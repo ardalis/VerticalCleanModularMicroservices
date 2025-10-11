@@ -1,0 +1,13 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/aspire/">
+    <Project Path="aspire/OrderDemo.AppHost/OrderDemo.AppHost.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/OrderDemo.Api/OrderDemo.Api.csproj" />
+  </Folder>
+</Solution>
