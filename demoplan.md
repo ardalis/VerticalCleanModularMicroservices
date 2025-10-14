@@ -18,7 +18,7 @@ Each demo will be placed in a numbered subfolder (e.g., `01-VerticalSlice`).
 - [ ] **Testing**: Include unit tests and integration tests for key features.
 - [ ] **Documentation**: Provide a `README.md` in each demo folder explaining the architecture and how to run the demo.
 - [ ] **Domain**: The domain will be for an ecommerce site. The key operations that the demo will need to model include the basic steps a user would perform to make a purchase: ListProducts, GetProductById, AddToCart, ViewCart, Checkout, ConfirmPurchase, GetOrderById, and ListOrders. The domain will support guest checkouts and will not include any admin capabilities; identity/authn/authz is out of scope. Cart and Order should be modeled independently from one another. An Order can be created from a Cart, but a Cart is not an Order. Carts should be marked Deleted once an Order has been associated with them.
-- [ ] **Orders**: Should have a properties for DatePaid and PaymentReference which should be populated by the ConfirmPurchase endpoint. Endpoints for viewing orders should indicate whether they are Paid and if so list the date and reference.
+- [ ] **Orders**: Should have a properties for DatePaid and PaymentReference which should be populated by the ConfirmPurchase endpoint. Endpoints for viewing orders should indicate whether they are Paid and if so list the date and reference. The payment reference should be populated from the response back from the mock payment service.
 
 ## Steps for Creating Each Demo
 
@@ -31,13 +31,19 @@ Each demo will be placed in a numbered subfolder (e.g., `01-VerticalSlice`).
 - [x] Do not use interfaces for data access - use EF Core directly where needed.
 - [x] Use minimal APIs and extension methods to separate them from Program.cs.
 - [x] Put all request/response/dto types that are not shared in the same file as the endpoint that uses/calls them.
-- [ ] Use a root level folder for each feature. Name each folder after the entity it works with plus "Feature" suffix (e.g. "CartFeature")
+- [x] Use a root level folder for each feature. Name each folder after the entity it works with plus "Feature" suffix (e.g. "CartFeature")
 
 ### 2. Clean Architecture
-- [ ] Create a new folder `02-CleanArchitecture`.
-- [ ] Refactor the vertical slice demo to follow clean architecture principles.
-- [ ] Introduce layers: Application, Domain, Infrastructure, and Presentation.
-- [ ] Use dependency inversion to decouple layers.
+- [x] Create a new folder `02-CleanArchitecture`.
+- [x] Copy aspire folder and ServiceDefaults project from vertical slice demo.
+- [x] Create solution file `OrderDemo.CleanArch.sln`.
+- [x] Set up Directory.Build.props and Directory.Packages.props with central package management.
+- [x] Introduce projects: Core, Use Cases, Infrastructure, and Web.
+- [x] Add project references following dependency inversion (Core has no deps, UseCases->Core, Infrastructure->Core+UseCases, Web->UseCases+Infrastructure+ServiceDefaults).
+- [x] Update AppHost to reference OrderDemo.Web project.
+- [x] Verify solution builds successfully.
+- [ ] Refactor the vertical slice demo to follow clean architecture principles. Use the sample folder in github.com/ardalis/CleanArchitecture and on local disk at C:\dev\github-ardalis\CleanArchitecture\sample as a guide.
+- [ ] Use Repository and Specification patterns for data access. Use Ardalis.Specification.EntityFrameworkCore package.
 
 ### 3. Modular Monoliths
 - [ ] Create a new folder `03-ModularMonolith`.

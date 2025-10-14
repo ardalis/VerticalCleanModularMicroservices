@@ -1,6 +1,6 @@
-@OrderDemo.Api_HostAddress = http://localhost:5274
-@OrderDemo.CartId = 87b7fda3-f65b-47d2-a46b-295fb46b203b
-@OrderDemo.OrderId = 6652f58b-3245-4305-8327-cf2fe88c59d1
+@OrderDemo.Api_HostAddress = https://localhost:7265
+@OrderDemo.CartId = 5a02ace3-f738-4442-88ab-cd278feb5d80
+@OrderDemo.OrderId = ec5a03fe-fc8c-4659-9fc7-f46351e9bf6f
 
 ### List Products
 GET {{OrderDemo.Api_HostAddress}}/products
@@ -25,8 +25,8 @@ Content-Type: application/json
 
 {
   "cartId": "{{OrderDemo.CartId}}",
-  "productId": 1,
-  "quantity": 2
+  "productId": 2,
+  "quantity": 3
 }
 
 ### View Cart
@@ -51,5 +51,11 @@ Content-Type: application/json
   "orderId": "{{OrderDemo.OrderId}}",
   "paymentIntent": "323r23r2jfsiidjf"
 }
+
+### List Orders
+GET {{OrderDemo.Api_HostAddress}}/orders?emailAddress=guest@example.com
+Accept: application/json
+
+
 
 

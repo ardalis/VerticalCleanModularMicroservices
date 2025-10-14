@@ -11,7 +11,7 @@ var sql = builder.AddSqlServer("sql", password: sqlPassword)
 var appDb = sql.AddDatabase("AppDb");
 
 // register the API project and link the DB
-builder.AddProject<Projects.OrderDemo_Api>("orderdemo-api")
+builder.AddProject<Projects.OrderDemo_Web>("orderdemo-web")
        .WithReference(appDb)
        .WaitFor(appDb)
        .WithUrl("https://localhost:7265");

@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\OrderDemo.Core\OrderDemo.Core.csproj" />
+    <ProjectReference Include="..\OrderDemo.UseCases\OrderDemo.UseCases.csproj" />
+  </ItemGroup>
+
+</Project>

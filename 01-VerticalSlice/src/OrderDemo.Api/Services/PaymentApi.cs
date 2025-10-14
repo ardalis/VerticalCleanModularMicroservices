@@ -10,6 +10,6 @@ public static class PaymentApi
             return "Error processing payment.";
         }
 
-        return "Success";
+        return $"Success: Reference={Guid.NewGuid().ToString().Split('-').Last()}";
     }
 }
