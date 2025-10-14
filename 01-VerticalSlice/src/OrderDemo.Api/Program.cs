@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Mediator;
+using OrderDemo.Api.Cart;
 using OrderDemo.Api.Data;
 using OrderDemo.Api.Features.Orders.CreateOrder;
 using OrderDemo.Api.Features.Orders.GetOrders;
+using OrderDemo.Api.Products;
 using ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,6 +41,12 @@ app.UseSwaggerUI();
 // Map endpoints
 app.MapCreateOrder();
 app.MapGetOrders();
+app.MapListProductsEndpoint();
+app.MapGetProductByIdEndpoint();
+app.MapAddToCartEndpoint();
+app.MapViewCartEndpoint();
+app.MapCheckoutEndpoint();
+app.MapConfirmPurchaseEndpoint();
 
 app.MapGet("/", () => Results.Redirect("/swagger"));
 

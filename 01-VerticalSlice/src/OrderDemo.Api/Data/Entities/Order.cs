@@ -7,4 +7,7 @@ public class Order
     public List<OrderItem> Items { get; private set; } = new();
 
     public decimal Total => Items.Sum(i => i.UnitPrice * i.Quantity);
+
+    public Guid? GuestUserId { get; set; }
+    public GuestUser? GuestUser { get; set; }
 }
