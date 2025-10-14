@@ -9,6 +9,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
     public DbSet<Order> Orders => Set<Order>();
     public DbSet<OrderItem> OrderItems => Set<OrderItem>();
     public DbSet<GuestUser> GuestUsers => Set<GuestUser>();
+    public DbSet<Entities.Cart> Carts => Set<Entities.Cart>();
+    public DbSet<Entities.CartItem> CartItems => Set<Entities.CartItem>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -33,6 +35,20 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
             b.HasOne(i => i.Product)
              .WithMany()
              .HasForeignKey(i => i.ProductId);
+        });
+
+        modelBuilder.Entity<Entities.Cart>(b =>
+        {
+            b.HasKey(c => c.Id);
+            b.HasMany(c => c.Items)
+             .WithOne(i => i.Cart)
+             .HasForeignKey(i => i.CartId)
+             .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<Entities.CartItem>(b =>
+        {
+            b.HasKey(i => i.Id);
         });
 
         // Seed data

@@ -1,6 +1,44 @@
 @OrderDemo.Api_HostAddress = http://localhost:5274
+@OrderDemo.OrderId = a5443616-f6f2-4446-8fd7-e77966572811
 
-GET {{OrderDemo.Api_HostAddress}}/weatherforecast/
+### List Products
+GET {{OrderDemo.Api_HostAddress}}/products
 Accept: application/json
 
-###
+### Get Product By ID
+GET {{OrderDemo.Api_HostAddress}}/products/1
+Accept: application/json
+
+### Add to Cart
+POST {{OrderDemo.Api_HostAddress}}/cart
+Content-Type: application/json
+
+{
+  "orderId": "{{OrderDemo.OrderId}}",
+  "productId": 1,
+  "quantity": 2
+}
+
+### View Cart
+GET {{OrderDemo.Api_HostAddress}}/cart/{{OrderDemo.OrderId}}
+Accept: application/json
+
+### Checkout
+POST {{OrderDemo.Api_HostAddress}}/checkout
+Content-Type: application/json
+
+{
+  "orderId": "{{OrderDemo.OrderId}}",
+  "email": "guest@example.com"
+}
+
+### Confirm Purchase
+POST {{OrderDemo.Api_HostAddress}}/confirm-purchase
+Content-Type: application/json
+
+{
+  "orderId": "{{OrderDemo.OrderId}}",
+  "paymentIntent": "success"
+}
+
+

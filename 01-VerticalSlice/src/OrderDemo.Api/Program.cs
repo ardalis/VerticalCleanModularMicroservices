@@ -1,11 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Mediator;
-using OrderDemo.Api.Cart;
+using OrderDemo.Api.CartFeature;
 using OrderDemo.Api.Data;
-using OrderDemo.Api.Features.Orders.CreateOrder;
-using OrderDemo.Api.Features.Orders.GetOrders;
-using OrderDemo.Api.Products;
+using OrderDemo.Api.ProductFeature;
+using Scalar.AspNetCore;
 using ServiceDefaults;
+using OrderDemo.Api.OrderFeature;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,9 +21,12 @@ builder.Services.AddMediator(options =>
     options.ServiceLifetime = ServiceLifetime.Scoped;
 });
 
-// Swagger
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddOpenApi();
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+});
 
 var app = builder.Build();
 
@@ -34,12 +37,7 @@ using (var scope = app.Services.CreateScope())
     db.Database.Migrate();
 }
 
-// Swagger UI
-app.UseSwagger();
-app.UseSwaggerUI();
-
 // Map endpoints
-app.MapCreateOrder();
 app.MapGetOrders();
 app.MapListProductsEndpoint();
 app.MapGetProductByIdEndpoint();
@@ -48,7 +46,7 @@ app.MapViewCartEndpoint();
 app.MapCheckoutEndpoint();
 app.MapConfirmPurchaseEndpoint();
 
-app.MapGet("/", () => Results.Redirect("/swagger"));
+app.MapGet("/", () => Results.Redirect("/docs"));
 
 // Apply migrations on startup
 if (app.Environment.IsDevelopment())
@@ -66,6 +64,9 @@ if (app.Environment.IsDevelopment())
             logger.LogError(ex, "An error occurred while migrating the database.");
         }
     }
+
+    app.MapOpenApi();
+    app.MapScalarApiReference(); // /scalar/v1
 }
 
 app.MapDefaultEndpoints(); // Important for Aspire health checks

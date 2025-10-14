@@ -2,7 +2,7 @@ using Mediator;
 using Microsoft.EntityFrameworkCore;
 using OrderDemo.Api.Data;
 
-namespace OrderDemo.Api.Features.Orders.GetOrders;
+namespace OrderDemo.Api.OrderFeature;
 
 public record GetOrdersQuery() : IRequest<IReadOnlyList<OrderSummaryDto>>;
 

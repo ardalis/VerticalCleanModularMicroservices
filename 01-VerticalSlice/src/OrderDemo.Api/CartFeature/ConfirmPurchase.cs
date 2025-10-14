@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using OrderDemo.Api.Data;
 using OrderDemo.Api.Services;
 
-namespace OrderDemo.Api.Cart;
+namespace OrderDemo.Api.CartFeature;
 
 public static class ConfirmPurchase
 {
@@ -26,14 +26,21 @@ public static class ConfirmPurchase
 
             if (paymentResult == "Success")
             {
-                return Results.Ok(new { Message = "Purchase confirmed", OrderId = order.Id });
+                var response = new ConfirmPurchaseResponse { Message = "Purchase confirmed", OrderId = order.Id };
+                return Results.Ok(response);
             }
 
-            return Results.BadRequest(new { Message = paymentResult });
+            return Results.BadRequest(new ConfirmPurchaseResponse { Message = paymentResult });
         })
         .WithName("ConfirmPurchase")
         .WithTags("Cart");
     }
 
     public record ConfirmPurchaseRequest(Guid OrderId, string PaymentIntent);
+
+    public record ConfirmPurchaseResponse
+    {
+        public string Message { get; set; } = string.Empty;
+        public Guid OrderId { get; set; }
+    }
 }
