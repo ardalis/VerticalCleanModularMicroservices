@@ -9,5 +9,6 @@
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/OrderDemo.Api/OrderDemo.Api.csproj" />
+    <Project Path="src/ServiceDefaults/ServiceDefaults.csproj" />
   </Folder>
 </Solution>
