@@ -21,10 +21,20 @@ public static class Checkout
                 return Results.NotFound("Cart not found");
             }
 
+            var guestUser = await dbContext.GuestUsers
+                .FirstOrDefaultAsync(g => g.Id == request.GuestUserId);
+
+            if (guestUser is null)
+            {
+                guestUser = new GuestUser { Id = request.GuestUserId, Email = "guest@example.com" };
+                dbContext.GuestUsers.Add(guestUser);
+                await dbContext.SaveChangesAsync();
+            }
+
             var order = new Order
             {
                 Id = Guid.NewGuid(),
-                GuestUserId = request.GuestUserId
+                GuestUserId = guestUser.Id
             };
 
             order.Items.AddRange(cart.Items.Select(i => new OrderItem

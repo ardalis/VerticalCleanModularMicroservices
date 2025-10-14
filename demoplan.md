@@ -17,7 +17,8 @@ Each demo will be placed in a numbered subfolder (e.g., `01-VerticalSlice`).
 - [ ] **API Design**: All demos should expose RESTful APIs for core functionality, and support Scalar for API documentation. APIs will always return DTOs, not entities or domain types.
 - [ ] **Testing**: Include unit tests and integration tests for key features.
 - [ ] **Documentation**: Provide a `README.md` in each demo folder explaining the architecture and how to run the demo.
-- [ ] **Domain**: The domain will be for an ecommerce site. The key operations that the demo will need to model include the basic steps a user would perform to make a purchase: ListProducts, GetProductById, AddToCart, ViewCart, Checkout, and ConfirmPurchase. The domain will support guest checkouts and will not include any admin capabilities; identity/authn/authz is out of scope. Cart and Order should be modeled independently from one another. An Order can be created from a Cart, but a Cart is not an Order. Carts should be marked Deleted once an Order has been associated with them.
+- [ ] **Domain**: The domain will be for an ecommerce site. The key operations that the demo will need to model include the basic steps a user would perform to make a purchase: ListProducts, GetProductById, AddToCart, ViewCart, Checkout, ConfirmPurchase, GetOrderById, and ListOrders. The domain will support guest checkouts and will not include any admin capabilities; identity/authn/authz is out of scope. Cart and Order should be modeled independently from one another. An Order can be created from a Cart, but a Cart is not an Order. Carts should be marked Deleted once an Order has been associated with them.
+- [ ] **Orders**: Should have a properties for DatePaid and PaymentReference which should be populated by the ConfirmPurchase endpoint. Endpoints for viewing orders should indicate whether they are Paid and if so list the date and reference.
 
 ## Steps for Creating Each Demo
 

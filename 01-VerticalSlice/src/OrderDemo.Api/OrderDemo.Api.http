@@ -1,5 +1,6 @@
 @OrderDemo.Api_HostAddress = http://localhost:5274
-@OrderDemo.OrderId = a5443616-f6f2-4446-8fd7-e77966572811
+@OrderDemo.CartId = 87b7fda3-f65b-47d2-a46b-295fb46b203b
+@OrderDemo.OrderId = 6652f58b-3245-4305-8327-cf2fe88c59d1
 
 ### List Products
 GET {{OrderDemo.Api_HostAddress}}/products
@@ -9,18 +10,27 @@ Accept: application/json
 GET {{OrderDemo.Api_HostAddress}}/products/1
 Accept: application/json
 
-### Add to Cart
+### Add to Cart (Anonymous User - creates cart)
 POST {{OrderDemo.Api_HostAddress}}/cart
 Content-Type: application/json
 
 {
-  "orderId": "{{OrderDemo.OrderId}}",
+  "productId": 1,
+  "quantity": 2
+}
+
+### Add to Cart (Anonymous User - existing cart)
+POST {{OrderDemo.Api_HostAddress}}/cart
+Content-Type: application/json
+
+{
+  "cartId": "{{OrderDemo.CartId}}",
   "productId": 1,
   "quantity": 2
 }
 
 ### View Cart
-GET {{OrderDemo.Api_HostAddress}}/cart/{{OrderDemo.OrderId}}
+GET {{OrderDemo.Api_HostAddress}}/cart/{{OrderDemo.CartId}}
 Accept: application/json
 
 ### Checkout
@@ -28,9 +38,10 @@ POST {{OrderDemo.Api_HostAddress}}/checkout
 Content-Type: application/json
 
 {
-  "orderId": "{{OrderDemo.OrderId}}",
+  "cartId": "{{OrderDemo.CartId}}",
   "email": "guest@example.com"
 }
+### get order id from response and set it to {{OrderDemo.OrderId}}
 
 ### Confirm Purchase
 POST {{OrderDemo.Api_HostAddress}}/confirm-purchase
@@ -38,7 +49,7 @@ Content-Type: application/json
 
 {
   "orderId": "{{OrderDemo.OrderId}}",
-  "paymentIntent": "success"
+  "paymentIntent": "323r23r2jfsiidjf"
 }
 
 
