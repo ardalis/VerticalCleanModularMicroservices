@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="Ardalis.Result" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OrderDemo.CleanArch.Core\OrderDemo.CleanArch.Core.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -43,7 +43,17 @@ Each demo will be placed in a numbered subfolder (e.g., `01-VerticalSlice`).
 - [x] Update AppHost to reference OrderDemo.Web project.
 - [x] Verify solution builds successfully.
 - [ ] Refactor the vertical slice demo to follow clean architecture principles. Use the sample folder in github.com/ardalis/CleanArchitecture and on local disk at C:\dev\github-ardalis\CleanArchitecture\sample as a guide.
+  - [ ] Move feature folders into the `UseCases` project, organizing them by use case rather than entity.
+  - [ ] Move shared domain models into the `Core` project.
+  - [ ] Move EF Core DbContext and migrations into the `Infrastructure` project.
+  - [ ] Update the `Web` project to reference `UseCases` and `Infrastructure` projects for API endpoints.
+  - [ ] Ensure dependency inversion is maintained by using interfaces for infrastructure dependencies.
+
 - [ ] Use Repository and Specification patterns for data access. Use Ardalis.Specification.EntityFrameworkCore package.
+  - [ ] Create repository interfaces in the `Core` project.
+  - [ ] Implement repository interfaces in the `Infrastructure` project using EF Core.
+  - [ ] Define specifications for querying data in the `Core` project.
+  - [ ] Update use cases to depend on repositories and specifications instead of directly using EF Core.
 
 ### 3. Modular Monoliths
 - [ ] Create a new folder `03-ModularMonolith`.

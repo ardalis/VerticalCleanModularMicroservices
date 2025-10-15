@@ -1,41 +1,61 @@
+using Microsoft.EntityFrameworkCore;
+using Mediator;
+using OrderDemo.Infrastructure.Data;
+using OrderDemo.Web.Products;
+using OrderDemo.Web.Carts;
+using OrderDemo.Web.Orders;
+using Scalar.AspNetCore;
+using ServiceDefaults;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+// Add Aspire service defaults
+builder.AddServiceDefaults();
+
+// Register DbContext - use "AppDb" to match your AppHost configuration
+builder.AddSqlServerDbContext<AppDbContext>("AppDb");
+
+// Mediator
+builder.Services.AddMediator(options =>
+{
+    options.ServiceLifetime = ServiceLifetime.Scoped;
+});
+
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Apply migrations on startup
 if (app.Environment.IsDevelopment())
 {
+    using (var scope = app.Services.CreateScope())
+    {
+        try
+        {
+            var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+            dbContext.Database.Migrate();
+        }
+        catch (Exception ex)
+        {
+            var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+            logger.LogError(ex, "An error occurred while migrating the database.");
+        }
+    }
+
     app.MapOpenApi();
+    app.MapScalarApiReference(); // /scalar/v1
 }
 
-app.UseHttpsRedirection();
+// Map endpoints
+app.MapListProducts();
+app.MapGetProductById();
+app.MapAddToCart();
+app.MapViewCart();
+app.MapCheckout();
+app.MapGetOrders();
+app.MapConfirmPurchase();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+app.MapGet("/", () => Results.Redirect("/scalar/v1"));
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
-
+app.MapDefaultEndpoints(); // Important for Aspire health checks
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

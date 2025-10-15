@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.5.1" />
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <IsAspireHost>true</IsAspireHost>
+    <UserSecretsId>c540eeb6-e06b-4456-a539-be58dd8b88c7</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.AppHost" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OrderDemo.CleanArch.Web\OrderDemo.CleanArch.Web.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- The IsAspireProjectResource attribute tells .NET Aspire to treat this 
+        reference as a standard project reference and not attempt to generate
+        a metadata file -->
+    <ProjectReference Include="..\OrderDemo.CleanArch.ServiceDefaults\OrderDemo.CleanArch.ServiceDefaults.csproj"
+                      IsAspireProjectResource="false" />
+  </ItemGroup>
+
+</Project>

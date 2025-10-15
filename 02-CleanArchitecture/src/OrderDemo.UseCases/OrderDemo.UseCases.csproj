@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OrderDemo.Core\OrderDemo.Core.csproj" />
+    <ProjectReference Include="..\OrderDemo.Infrastructure\OrderDemo.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
