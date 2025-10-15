@@ -34,20 +34,15 @@ Each demo will be placed in a numbered subfolder (e.g., `01-VerticalSlice`).
 - [x] Use a root level folder for each feature. Name each folder after the entity it works with plus "Feature" suffix (e.g. "CartFeature")
 
 ### 2. Clean Architecture
-- [x] Create a new folder `02-CleanArchitecture`.
-- [x] Copy aspire folder and ServiceDefaults project from vertical slice demo.
-- [x] Create solution file `OrderDemo.CleanArch.sln`.
-- [x] Set up Directory.Build.props and Directory.Packages.props with central package management.
-- [x] Introduce projects: Core, Use Cases, Infrastructure, and Web.
-- [x] Add project references following dependency inversion (Core has no deps, UseCases->Core, Infrastructure->Core+UseCases, Web->UseCases+Infrastructure+ServiceDefaults).
-- [x] Update AppHost to reference OrderDemo.Web project.
-- [x] Verify solution builds successfully.
+
+- [x] Run dotnet new clean-arch -o OrderDemo.CleanArch from the solution root. This will create a folder OrderDemo.CleanArch which will be the template we will use.
+- [x] Rename `OrderDemo.CleanArch` to `02-CleanArchitecture`.
 - [ ] Refactor the vertical slice demo to follow clean architecture principles. Use the sample folder in github.com/ardalis/CleanArchitecture and on local disk at C:\dev\github-ardalis\CleanArchitecture\sample as a guide.
-  - [ ] Move feature folders into the `UseCases` project, organizing them by use case rather than entity.
-  - [ ] Move shared domain models into the `Core` project.
-  - [ ] Move EF Core DbContext and migrations into the `Infrastructure` project.
-  - [ ] Update the `Web` project to reference `UseCases` and `Infrastructure` projects for API endpoints.
-  - [ ] Ensure dependency inversion is maintained by using interfaces for infrastructure dependencies.
+- [ ] Move feature folders into the `UseCases` project, organizing them by use case rather than entity.
+- [ ] Move shared domain models into the `Core` project.
+- [ ] Move EF Core DbContext and migrations into the `Infrastructure` project.
+- [ ] Update the `Web` project to reference `UseCases` and `Infrastructure` projects for API endpoints.
+- [ ] Ensure dependency inversion is maintained by using interfaces for infrastructure dependencies.
 
 - [ ] Use Repository and Specification patterns for data access. Use Ardalis.Specification.EntityFrameworkCore package.
   - [ ] Create repository interfaces in the `Core` project.
