@@ -3,6 +3,7 @@ using OrderDemo.CleanArch.Core.Services;
 using OrderDemo.CleanArch.Infrastructure.Data;
 using OrderDemo.CleanArch.Infrastructure.Data.Queries;
 using OrderDemo.CleanArch.UseCases.Contributors.List;
+using OrderDemo.CleanArch.UseCases.Products.List;
 
 namespace OrderDemo.CleanArch.Infrastructure;
 public static class InfrastructureServiceExtensions
@@ -28,6 +29,7 @@ public static class InfrastructureServiceExtensions
     services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>))
            .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>))
            .AddScoped<IListContributorsQueryService, ListContributorsQueryService>()
+           .AddScoped<IListProductsQueryService, ListProductsQueryService>()
            .AddScoped<IDeleteContributorService, DeleteContributorService>();
 
     logger.LogInformation("{Project} services registered", "Infrastructure");
