@@ -6,19 +6,6 @@ namespace OrderDemo.CleanArch.IntegrationTests.Products;
 
 public class ListProductsIntegrationTests
 {
-  private AppDbContext _dbContext;
-  private ListProductsQueryService _queryService;
-
-  public ListProductsIntegrationTests()
-  {
-    var options = CreateNewContextOptions();
-    _dbContext = new AppDbContext(options);
-    _queryService = new ListProductsQueryService(_dbContext);
-    
-    // Seed test data
-    SeedTestProducts().Wait();
-  }
-
   private static DbContextOptions<AppDbContext> CreateNewContextOptions()
   {
     var fakeEventDispatcher = Substitute.For<IDomainEventDispatcher>();
@@ -31,22 +18,21 @@ public class ListProductsIntegrationTests
     var interceptor = serviceProvider.GetRequiredService<EventDispatchInterceptor>();
 
     var builder = new DbContextOptionsBuilder<AppDbContext>();
-    builder.UseInMemoryDatabase("listproductstest")
+    builder.UseInMemoryDatabase($"listproductstest-{Guid.NewGuid()}")
            .UseInternalServiceProvider(serviceProvider)
            .AddInterceptors(interceptor);
 
     return builder.Options;
   }
 
-  private async Task SeedTestProducts()
+  private static async Task SeedTestProducts(AppDbContext dbContext, int count = 10)
   {
-    // Add test products
-    for (int i = 1; i <= 10; i++)
+    for (int i = 1; i <= count; i++)
     {
       var product = new Product(ProductId.From(0), $"Product {i}", 10m + i);
-      _dbContext.Products.Add(product);
+      dbContext.Products.Add(product);
     }
-    await _dbContext.SaveChangesAsync();
+    await dbContext.SaveChangesAsync();
   }
 
   [Theory]
@@ -61,8 +47,14 @@ public class ListProductsIntegrationTests
     int expectedTotalCount, 
     int expectedTotalPages)
   {
+    // Arrange
+    var options = CreateNewContextOptions();
+    var dbContext = new AppDbContext(options);
+    await SeedTestProducts(dbContext);
+    var queryService = new ListProductsQueryService(dbContext);
+
     // Act
-    var result = await _queryService.ListAsync(page, pageSize);
+    var result = await queryService.ListAsync(page, pageSize);
 
     // Assert
     result.ShouldNotBeNull();
@@ -84,8 +76,14 @@ public class ListProductsIntegrationTests
   [Fact]
   public async Task ListProducts_FirstPage_ReturnsProductsInOrder()
   {
+    // Arrange
+    var options = CreateNewContextOptions();
+    var dbContext = new AppDbContext(options);
+    await SeedTestProducts(dbContext);
+    var queryService = new ListProductsQueryService(dbContext);
+
     // Act
-    var result = await _queryService.ListAsync(1, 10);
+    var result = await queryService.ListAsync(1, 10);
 
     // Assert
     result.Items.Count.ShouldBe(10);
@@ -96,7 +94,7 @@ public class ListProductsIntegrationTests
   [Fact]
   public async Task ListProducts_EmptyDatabase_ReturnsEmptyList()
   {
-    // Arrange - create a new context with no products
+    // Arrange
     var options = CreateNewContextOptions();
     var emptyDbContext = new AppDbContext(options);
     var emptyQueryService = new ListProductsQueryService(emptyDbContext);
