@@ -71,3 +71,6 @@ if (app.Environment.IsDevelopment())
 
 app.MapDefaultEndpoints(); // Important for Aspire health checks
 app.Run();
+
+// Make the implicit Program class public for integration tests
+public partial class Program { }
