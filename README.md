@@ -51,7 +51,7 @@ Each folder is a **complete, runnable example** of the same domain implemented i
 
 ## ⚙️ Prerequisites
 
-- [.NET 9 SDK](https://dotnet.microsoft.com/download/dotnet/9.0) or later  
+- [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)  
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)  
 - [Visual Studio 2022 17.10+](https://visualstudio.microsoft.com/vs/) or [Rider / VS Code](https://code.visualstudio.com)  
 - [Aspire 9.5+](https://learn.microsoft.com/en-us/dotnet/aspire/overview) for local container orchestration  
@@ -59,7 +59,7 @@ Each folder is a **complete, runnable example** of the same domain implemented i
 Optionally you may find the Aspire App Templates helpful. Install them with:
 
 ```bash
-dotnet new install Aspire.ProjectTemplates@9.5.1
+dotnet new install Aspire.ProjectTemplates::10.0.0-*
 ```
 
 ---
@@ -98,8 +98,8 @@ dotnet run
 
 ## 🧰 Technologies Used
 
-- **.NET 9 / 10 Preview**
-- **EF Core 9** for data access
+- **.NET 10**
+- **EF Core 10** for data access
 - **Mediator** (Martin Costello’s library) for in-process messaging
 - **Aspire** for local orchestration and observability
 - **Swagger / Minimal APIs**
