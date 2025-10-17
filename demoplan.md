@@ -11,7 +11,7 @@ Each demo will be placed in a numbered subfolder (e.g., `01-VerticalSlice`).
 
 ## Common Demo Requirements
 
-- [ ] **Development Environment**: Ensure all demos are built using .NET 9 or later.
+- [ ] **Development Environment**: Ensure all demos are built using .NET 10.
 - [ ] **Aspire**: All demo apps will use Aspire 9.5.1 or later, with Aspire's `AspireAppHostBuilderExtensions` package installed.
 - [ ] **Database**: Use a SQL Server database in an Aspire-managed docker container.
 - [ ] **API Design**: All demos should expose RESTful APIs for core functionality, and support Scalar for API documentation. APIs will always return DTOs, not entities or domain types.
