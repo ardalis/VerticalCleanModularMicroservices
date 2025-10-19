@@ -10,7 +10,7 @@ public class Cart : EntityBase<Cart, CartId>, IAggregateRoot
 
   public void AddItem(int productId, int quantity, decimal unitPrice)
   {
-    var item = new CartItem(Guid.NewGuid(), productId, quantity, unitPrice);
+    var item = new CartItem(productId, quantity, unitPrice);
     _items.Add(item);
   }
 

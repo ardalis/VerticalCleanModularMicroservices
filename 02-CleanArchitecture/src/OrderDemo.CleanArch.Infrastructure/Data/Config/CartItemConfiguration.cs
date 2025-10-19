@@ -9,6 +9,11 @@ public class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
     builder.ToTable("CartItems");
     
     builder.HasKey(ci => ci.Id);
+    
+    // Use SQL Server IDENTITY for auto-increment int ID
+    builder.Property(ci => ci.Id)
+      .ValueGeneratedOnAdd()
+      .IsRequired();
         
     builder.Property(ci => ci.ProductId)
       .IsRequired();

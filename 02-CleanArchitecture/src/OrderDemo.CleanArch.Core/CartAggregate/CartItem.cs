@@ -1,13 +1,12 @@
 ﻿namespace OrderDemo.CleanArch.Core.CartAggregate;
 
-public class CartItem : EntityBase<CartItem, Guid>
+public class CartItem : EntityBase<CartItem, int>
 {
   // Private constructor for EF Core
   private CartItem() { }
   
-  public CartItem(Guid id, int productId, int quantity, decimal unitPrice)
+  public CartItem(int productId, int quantity, decimal unitPrice)
   {
-    Id = id;
     ProductId = productId;
     Quantity = quantity;
     UnitPrice = unitPrice;
