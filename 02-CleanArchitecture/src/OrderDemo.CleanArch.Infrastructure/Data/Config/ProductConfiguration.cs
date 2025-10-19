@@ -1,4 +1,4 @@
-using OrderDemo.CleanArch.Core.ProductAggregate;
+﻿using OrderDemo.CleanArch.Core.ProductAggregate;
 
 namespace OrderDemo.CleanArch.Infrastructure.Data.Config;
 
@@ -18,5 +18,20 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
     builder.Property(entity => entity.UnitPrice)
       .HasPrecision(18, 2)
       .IsRequired();
+
+    builder.HasData(
+      new Product(
+        ProductId.From(1),
+        "Laptop",
+        999.99m),
+      new Product(
+        ProductId.From(2),
+        "Smartphone",
+        499.99m),
+      new Product(
+        ProductId.From(3),
+        "Tablet",
+        299.99m)
+    );
   }
 }

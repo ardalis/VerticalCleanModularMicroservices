@@ -1,43 +1,62 @@
-# For more info on HTTP files go to https://aka.ms/vs/httpfile
-@host=https://localhost
-@port=57679
+@OrderDemo.Api_HostAddress = https://localhost:57679
 
-// List all contributors
-GET {{host}}:{{port}}/Contributors
+@OrderDemo.CartId = 5a02ace3-f738-4442-88ab-cd278feb5d80
+@OrderDemo.OrderId = ec5a03fe-fc8c-4659-9fc7-f46351e9bf6f
 
-###
+### List Products
+GET {{OrderDemo.Api_HostAddress}}/products
+Accept: application/json
 
-// Get a specific contributor
-@id_to_get=1
-GET {{host}}:{{port}}/Contributors/{{id_to_get}}
+### Get Product By ID
+GET {{OrderDemo.Api_HostAddress}}/products/1
+Accept: application/json
 
-###
-
-// Add a new contributor
-POST {{host}}:{{port}}/Contributors
+### Add to Cart (Anonymous User - creates cart)
+POST {{OrderDemo.Api_HostAddress}}/cart
 Content-Type: application/json
 
 {
-  "name": "John Doe 3",
-  "email": "test@test.com",
-  "phoneNumber": "1234567890"
+  "productId": 1,
+  "quantity": 2
 }
 
-###
-
-// Update a contributor
-@id_to_update=1
-PUT {{host}}:{{port}}/Contributors/{{id_to_update}}
+### Add to Cart (Anonymous User - existing cart)
+POST {{OrderDemo.Api_HostAddress}}/cart
 Content-Type: application/json
 
 {
-  "id": {{id_to_update}},
-  "name": "ardalis2"
+  "cartId": "{{OrderDemo.CartId}}",
+  "productId": 2,
+  "quantity": 3
 }
 
-###
+### View Cart
+GET {{OrderDemo.Api_HostAddress}}/cart/{{OrderDemo.CartId}}
+Accept: application/json
 
-// Delete a contributor
-@id_to_delete=1
-DELETE {{host}}:{{port}}/Contributors/{{id_to_delete}}
+### Checkout
+POST {{OrderDemo.Api_HostAddress}}/checkout
+Content-Type: application/json
+
+{
+  "cartId": "{{OrderDemo.CartId}}",
+  "email": "guest@example.com"
+}
+### get order id from response and set it to {{OrderDemo.OrderId}}
+
+### Confirm Purchase
+POST {{OrderDemo.Api_HostAddress}}/confirm-purchase
+Content-Type: application/json
+
+{
+  "orderId": "{{OrderDemo.OrderId}}",
+  "paymentIntent": "323r23r2jfsiidjf"
+}
+
+### List Orders
+GET {{OrderDemo.Api_HostAddress}}/orders?emailAddress=guest@example.com
+Accept: application/json
+
+
+
 

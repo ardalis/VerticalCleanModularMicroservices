@@ -1,0 +1,524 @@
+2025-10-19 12:56:27.391 +01:00 [INF] Registered 6 endpoints in 2,418 milliseconds.
+2025-10-19 12:56:29.001 +01:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+PRAGMA journal_mode = 'wal';
+2025-10-19 12:56:29.117 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Contributors" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Contributors" PRIMARY KEY,
+    "Name" TEXT NOT NULL,
+    "Status" INTEGER NOT NULL,
+    "PhoneNumber_CountryCode" TEXT NULL,
+    "PhoneNumber_Number" TEXT NULL,
+    "PhoneNumber_Extension" TEXT NULL
+);
+2025-10-19 12:56:29.133 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Products" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Products" PRIMARY KEY,
+    "Name" TEXT NOT NULL,
+    "UnitPrice" TEXT NOT NULL
+);
+2025-10-19 12:56:29.331 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-10-19 12:56:29.348 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Products" AS "p")
+2025-10-19 12:56:29.354 +01:00 [ERR] An error occurred seeding the DB. The type initializer for 'OrderDemo.CleanArch.Infrastructure.Data.SeedData' threw an exception.
+System.TypeInitializationException: The type initializer for 'OrderDemo.CleanArch.Infrastructure.Data.SeedData' threw an exception.
+ ---> Vogen.ValueObjectValidationException: ProductId must be positive.
+   at OrderDemo.CleanArch.Core.ProductAggregate.ProductId.ThrowHelper.ThrowWhenValidationFails(Validation validation) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Core\obj\Debug\net10.0\Vogen\Vogen.ValueObjectGenerator\OrderDemo.CleanArch.Core.ProductAggregate_ProductId.g.cs:line 770
+   at OrderDemo.CleanArch.Infrastructure.Data.SeedData..cctor() in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\SeedData.cs:line 13
+   --- End of inner exception stack trace ---
+   at OrderDemo.CleanArch.Infrastructure.Data.SeedData.PopulateTestDataAsync(AppDbContext dbContext) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\SeedData.cs:line 25
+   at OrderDemo.CleanArch.Infrastructure.Data.SeedData.InitializeAsync(AppDbContext dbContext) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\SeedData.cs:line 20
+   at OrderDemo.CleanArch.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Configurations\MiddlewareConfig.cs:line 50
+2025-10-19 12:56:29.748 +01:00 [INF] Now listening on: https://localhost:54393
+2025-10-19 12:56:29.753 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-19 12:56:30.407 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 12:56:30.407 +01:00 [INF] Hosting environment: Development
+2025-10-19 12:56:30.407 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-19 13:59:32.568 +01:00 [INF] Registered 6 endpoints in 3,267 milliseconds.
+2025-10-19 13:59:35.552 +01:00 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-10-19 13:59:36.030 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-10-19 13:59:36.056 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Products" AS "p")
+2025-10-19 13:59:36.066 +01:00 [ERR] An error occurred seeding the DB. The type initializer for 'OrderDemo.CleanArch.Infrastructure.Data.SeedData' threw an exception.
+System.TypeInitializationException: The type initializer for 'OrderDemo.CleanArch.Infrastructure.Data.SeedData' threw an exception.
+ ---> Vogen.ValueObjectValidationException: ProductId must be positive.
+   at OrderDemo.CleanArch.Core.ProductAggregate.ProductId.ThrowHelper.ThrowWhenValidationFails(Validation validation) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Core\obj\Debug\net10.0\Vogen\Vogen.ValueObjectGenerator\OrderDemo.CleanArch.Core.ProductAggregate_ProductId.g.cs:line 770
+   at OrderDemo.CleanArch.Infrastructure.Data.SeedData..cctor() in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\SeedData.cs:line 13
+   --- End of inner exception stack trace ---
+   at OrderDemo.CleanArch.Infrastructure.Data.SeedData.PopulateTestDataAsync(AppDbContext dbContext) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\SeedData.cs:line 25
+   at OrderDemo.CleanArch.Infrastructure.Data.SeedData.InitializeAsync(AppDbContext dbContext) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\SeedData.cs:line 20
+   at OrderDemo.CleanArch.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Configurations\MiddlewareConfig.cs:line 50
+2025-10-19 13:59:36.684 +01:00 [INF] Now listening on: https://localhost:50723
+2025-10-19 13:59:36.697 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-19 13:59:37.909 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/scalar - null null
+2025-10-19 13:59:38.103 +01:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2025-10-19 13:59:38.124 +01:00 [INF] Executing RedirectResult, redirecting to scalar/.
+2025-10-19 13:59:38.125 +01:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2025-10-19 13:59:38.133 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/scalar - 302 null null 245.0538ms
+2025-10-19 13:59:38.146 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/scalar/ - null null
+2025-10-19 13:59:38.147 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 13:59:38.147 +01:00 [INF] Hosting environment: Development
+2025-10-19 13:59:38.147 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-19 13:59:38.154 +01:00 [INF] Executing endpoint 'HTTP: GET /scalar/{documentName?}'
+2025-10-19 13:59:38.407 +01:00 [INF] Write content with HTTP Response ContentType of text/html
+2025-10-19 13:59:38.433 +01:00 [INF] Executed endpoint 'HTTP: GET /scalar/{documentName?}'
+2025-10-19 13:59:38.437 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/scalar/ - 200 null text/html 290.5592ms
+2025-10-19 13:59:38.551 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/scalar/scalar.js - null null
+2025-10-19 13:59:38.552 +01:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.js'
+2025-10-19 13:59:38.561 +01:00 [INF] Sending file with download name ''.
+2025-10-19 13:59:38.591 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/scalar/scalar.aspnetcore.js - null null
+2025-10-19 13:59:38.594 +01:00 [INF] Executing endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2025-10-19 13:59:38.595 +01:00 [INF] Sending file with download name ''.
+2025-10-19 13:59:38.596 +01:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.aspnetcore.js'
+2025-10-19 13:59:38.597 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/scalar/scalar.aspnetcore.js - 200 1046 text/javascript 5.8908ms
+2025-10-19 13:59:38.600 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/_framework/aspnetcore-browser-refresh.js - null null
+2025-10-19 13:59:38.605 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/_vs/browserLink - null null
+2025-10-19 13:59:38.608 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/_framework/aspnetcore-browser-refresh.js - 200 16531 application/javascript; charset=utf-8 8.9096ms
+2025-10-19 13:59:38.625 +01:00 [INF] Executed endpoint 'HTTP: GET /scalar/scalar.js'
+2025-10-19 13:59:38.631 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/scalar/scalar.js - 200 926401 text/javascript 80.7324ms
+2025-10-19 13:59:38.700 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/_vs/browserLink - 200 null text/javascript; charset=UTF-8 95.5194ms
+2025-10-19 13:59:39.033 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/openapi/v1.json - null null
+2025-10-19 13:59:39.222 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/openapi/v1.json - 200 null application/json; charset=utf-8 189.1524ms
+2025-10-19 13:59:39.225 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/openapi/v1.json - null null
+2025-10-19 13:59:39.227 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/openapi/v1.json - 200 null application/json; charset=utf-8 2.3287ms
+2025-10-19 13:59:51.711 +01:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Products?page=1&per_page=10 - null null
+2025-10-19 13:59:51.712 +01:00 [INF] Executing endpoint 'HTTP: GET /Products'
+2025-10-19 13:59:52.099 +01:00 [INF] Executed DbCommand (98ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."UnitPrice"
+FROM "Products" AS "p"
+ORDER BY "p"."Id"
+LIMIT @__p_1 OFFSET @__p_0
+2025-10-19 13:59:52.168 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "Products" AS "p"
+2025-10-19 13:59:52.199 +01:00 [INF] Executed endpoint 'HTTP: GET /Products'
+2025-10-19 13:59:52.205 +01:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Products?page=1&per_page=10 - 200 null application/json; charset=utf-8 494.3823ms
+2025-10-19 14:09:05.865 +01:00 [INF] Registered 6 endpoints in 457 milliseconds.
+2025-10-19 14:09:07.341 +01:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-10-19 14:09:07.773 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-10-19 14:09:07.798 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Products" AS "p")
+2025-10-19 14:09:07.805 +01:00 [ERR] An error occurred seeding the DB. The type initializer for 'OrderDemo.CleanArch.Infrastructure.Data.SeedData' threw an exception.
+System.TypeInitializationException: The type initializer for 'OrderDemo.CleanArch.Infrastructure.Data.SeedData' threw an exception.
+ ---> Vogen.ValueObjectValidationException: ProductId must be positive.
+   at OrderDemo.CleanArch.Core.ProductAggregate.ProductId.ThrowHelper.ThrowWhenValidationFails(Validation validation) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Core\obj\Debug\net10.0\Vogen\Vogen.ValueObjectGenerator\OrderDemo.CleanArch.Core.ProductAggregate_ProductId.g.cs:line 770
+   at OrderDemo.CleanArch.Infrastructure.Data.SeedData..cctor() in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\SeedData.cs:line 13
+   --- End of inner exception stack trace ---
+   at OrderDemo.CleanArch.Infrastructure.Data.SeedData.PopulateTestDataAsync(AppDbContext dbContext) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\SeedData.cs:line 25
+   at OrderDemo.CleanArch.Infrastructure.Data.SeedData.InitializeAsync(AppDbContext dbContext) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\SeedData.cs:line 20
+   at OrderDemo.CleanArch.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Configurations\MiddlewareConfig.cs:line 50
+2025-10-19 14:09:08.228 +01:00 [INF] Now listening on: https://localhost:59611
+2025-10-19 14:09:08.237 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-19 14:09:09.464 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 14:09:09.464 +01:00 [INF] Hosting environment: Development
+2025-10-19 14:09:09.464 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-19 14:11:04.305 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products - null null
+2025-10-19 14:11:04.349 +01:00 [INF] Executing endpoint 'HTTP: GET /Products'
+2025-10-19 14:11:04.508 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."UnitPrice"
+FROM "Products" AS "p"
+ORDER BY "p"."Id"
+LIMIT @__p_1 OFFSET @__p_0
+2025-10-19 14:11:04.545 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "Products" AS "p"
+2025-10-19 14:11:04.580 +01:00 [INF] Executed endpoint 'HTTP: GET /Products'
+2025-10-19 14:11:04.586 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products - 200 null application/json; charset=utf-8 292.6024ms
+2025-10-19 14:12:46.503 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products - null null
+2025-10-19 14:12:46.505 +01:00 [INF] Executing endpoint 'HTTP: GET /Products'
+2025-10-19 14:12:46.644 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."UnitPrice"
+FROM "Products" AS "p"
+ORDER BY "p"."Id"
+LIMIT @__p_1 OFFSET @__p_0
+2025-10-19 14:12:46.645 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "Products" AS "p"
+2025-10-19 14:12:46.646 +01:00 [INF] Executed endpoint 'HTTP: GET /Products'
+2025-10-19 14:12:46.646 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products - 200 null application/json; charset=utf-8 144.1156ms
+2025-10-19 14:26:22.764 +01:00 [INF] Registered 6 endpoints in 3,087 milliseconds.
+2025-10-19 14:26:25.292 +01:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-10-19 14:26:25.827 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-10-19 14:26:25.858 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Products" AS "p")
+2025-10-19 14:26:25.868 +01:00 [ERR] An error occurred seeding the DB. The type initializer for 'OrderDemo.CleanArch.Infrastructure.Data.SeedData' threw an exception.
+System.TypeInitializationException: The type initializer for 'OrderDemo.CleanArch.Infrastructure.Data.SeedData' threw an exception.
+ ---> Vogen.ValueObjectValidationException: ProductId must be positive.
+   at OrderDemo.CleanArch.Core.ProductAggregate.ProductId.ThrowHelper.ThrowWhenValidationFails(Validation validation) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Core\obj\Debug\net10.0\Vogen\Vogen.ValueObjectGenerator\OrderDemo.CleanArch.Core.ProductAggregate_ProductId.g.cs:line 770
+   at OrderDemo.CleanArch.Infrastructure.Data.SeedData..cctor() in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\SeedData.cs:line 13
+   --- End of inner exception stack trace ---
+   at OrderDemo.CleanArch.Infrastructure.Data.SeedData.PopulateTestDataAsync(AppDbContext dbContext) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\SeedData.cs:line 29
+   at OrderDemo.CleanArch.Infrastructure.Data.SeedData.InitializeAsync(AppDbContext dbContext) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\SeedData.cs:line 23
+   at OrderDemo.CleanArch.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Configurations\MiddlewareConfig.cs:line 50
+2025-10-19 14:26:26.503 +01:00 [INF] Now listening on: https://localhost:50333
+2025-10-19 14:26:26.514 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-19 14:26:27.877 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 14:26:27.877 +01:00 [INF] Hosting environment: Development
+2025-10-19 14:26:27.877 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-19 14:27:38.556 +01:00 [INF] Registered 6 endpoints in 473 milliseconds.
+2025-10-19 14:27:40.107 +01:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-10-19 14:27:40.504 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-10-19 14:27:40.530 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Products" AS "p")
+2025-10-19 14:27:40.539 +01:00 [ERR] An error occurred seeding the DB. The type initializer for 'OrderDemo.CleanArch.Infrastructure.Data.SeedData' threw an exception.
+System.TypeInitializationException: The type initializer for 'OrderDemo.CleanArch.Infrastructure.Data.SeedData' threw an exception.
+ ---> Vogen.ValueObjectValidationException: ProductId must be positive.
+   at OrderDemo.CleanArch.Core.ProductAggregate.ProductId.ThrowHelper.ThrowWhenValidationFails(Validation validation) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Core\obj\Debug\net10.0\Vogen\Vogen.ValueObjectGenerator\OrderDemo.CleanArch.Core.ProductAggregate_ProductId.g.cs:line 770
+   at OrderDemo.CleanArch.Infrastructure.Data.SeedData..cctor() in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\SeedData.cs:line 13
+   --- End of inner exception stack trace ---
+   at OrderDemo.CleanArch.Infrastructure.Data.SeedData.PopulateTestDataAsync(AppDbContext dbContext) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\SeedData.cs:line 29
+   at OrderDemo.CleanArch.Infrastructure.Data.SeedData.InitializeAsync(AppDbContext dbContext) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\SeedData.cs:line 23
+   at OrderDemo.CleanArch.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Configurations\MiddlewareConfig.cs:line 50
+2025-10-19 14:27:40.884 +01:00 [INF] Now listening on: https://localhost:55309
+2025-10-19 14:27:40.890 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-19 14:27:42.031 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 14:27:42.031 +01:00 [INF] Hosting environment: Development
+2025-10-19 14:27:42.031 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-19 14:28:18.271 +01:00 [INF] Registered 6 endpoints in 391 milliseconds.
+2025-10-19 14:28:19.886 +01:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-10-19 14:28:20.302 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-10-19 14:28:20.320 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Products" AS "p")
+2025-10-19 14:28:20.327 +01:00 [ERR] An error occurred seeding the DB. The type initializer for 'OrderDemo.CleanArch.Infrastructure.Data.SeedData' threw an exception.
+System.TypeInitializationException: The type initializer for 'OrderDemo.CleanArch.Infrastructure.Data.SeedData' threw an exception.
+ ---> Vogen.ValueObjectValidationException: ProductId must be positive.
+   at OrderDemo.CleanArch.Core.ProductAggregate.ProductId.ThrowHelper.ThrowWhenValidationFails(Validation validation) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Core\obj\Debug\net10.0\Vogen\Vogen.ValueObjectGenerator\OrderDemo.CleanArch.Core.ProductAggregate_ProductId.g.cs:line 770
+   at OrderDemo.CleanArch.Infrastructure.Data.SeedData..cctor() in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\SeedData.cs:line 13
+   --- End of inner exception stack trace ---
+   at OrderDemo.CleanArch.Infrastructure.Data.SeedData.PopulateTestDataAsync(AppDbContext dbContext) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\SeedData.cs:line 29
+   at OrderDemo.CleanArch.Infrastructure.Data.SeedData.InitializeAsync(AppDbContext dbContext) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\SeedData.cs:line 23
+   at OrderDemo.CleanArch.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Configurations\MiddlewareConfig.cs:line 50
+2025-10-19 14:28:20.680 +01:00 [INF] Now listening on: https://localhost:55727
+2025-10-19 14:28:20.686 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-19 14:28:21.925 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 14:28:21.926 +01:00 [INF] Hosting environment: Development
+2025-10-19 14:28:21.926 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-19 14:34:42.939 +01:00 [INF] Registered 6 endpoints in 475 milliseconds.
+2025-10-19 14:34:44.522 +01:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-10-19 14:34:44.977 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-10-19 14:34:45.003 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Products" AS "p")
+2025-10-19 14:34:45.214 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.314 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.440 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 7), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.454 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 6), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.498 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.504 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.511 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.512 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.513 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.514 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.514 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.514 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.515 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.515 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.515 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.515 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.516 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.516 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.516 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.517 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.517 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.517 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.517 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.517 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.517 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.518 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.518 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.518 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.533 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.534 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.535 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.535 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.551 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.551 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.553 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.553 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.670 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.671 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.671 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.672 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.684 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.685 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.686 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.686 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.701 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.702 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.702 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.703 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.729 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.730 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.731 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.732 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.733 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.734 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Name", "c"."Status", "c"."PhoneNumber_CountryCode", "c"."PhoneNumber_Extension", "c"."PhoneNumber_Number"
+FROM "Contributors" AS "c"
+2025-10-19 14:34:45.736 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 13), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.737 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 13), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.745 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 13), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.746 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 13), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.747 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 13), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.747 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 13), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.761 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 13), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.762 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 13), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.762 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 13), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.762 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 14), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.780 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 14), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.780 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 14), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.780 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 14), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.781 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 14), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.803 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 14), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.803 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 14), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.803 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 14), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.803 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 14), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.818 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 14), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.819 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 14), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.819 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 14), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.819 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 14), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.834 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 14), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.834 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 14), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.835 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 14), @p2='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Id", "Name", "Status")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.894 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 9), @p2='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Products" ("Id", "Name", "UnitPrice")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.894 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 9), @p2='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Products" ("Id", "Name", "UnitPrice")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.894 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 9), @p2='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Products" ("Id", "Name", "UnitPrice")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.894 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 9), @p2='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Products" ("Id", "Name", "UnitPrice")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.894 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 9), @p2='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Products" ("Id", "Name", "UnitPrice")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.894 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 9), @p2='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Products" ("Id", "Name", "UnitPrice")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.895 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 9), @p2='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Products" ("Id", "Name", "UnitPrice")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.895 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 9), @p2='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Products" ("Id", "Name", "UnitPrice")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.895 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 9), @p2='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Products" ("Id", "Name", "UnitPrice")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:45.895 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (Size = 10), @p2='?' (DbType = Decimal)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Products" ("Id", "Name", "UnitPrice")
+VALUES (@p0, @p1, @p2);
+2025-10-19 14:34:46.314 +01:00 [INF] Now listening on: https://localhost:63879
+2025-10-19 14:34:46.324 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-19 14:34:47.643 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 14:34:47.643 +01:00 [INF] Hosting environment: Development
+2025-10-19 14:34:47.643 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-19 14:34:58.199 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products - null null
+2025-10-19 14:34:58.266 +01:00 [INF] Executing endpoint 'HTTP: GET /Products'
+2025-10-19 14:34:58.406 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."UnitPrice"
+FROM "Products" AS "p"
+ORDER BY "p"."Id"
+LIMIT @__p_1 OFFSET @__p_0
+2025-10-19 14:34:58.449 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "Products" AS "p"
+2025-10-19 14:34:58.473 +01:00 [INF] Executed endpoint 'HTTP: GET /Products'
+2025-10-19 14:34:58.481 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products - 200 null application/json; charset=utf-8 296.3685ms
