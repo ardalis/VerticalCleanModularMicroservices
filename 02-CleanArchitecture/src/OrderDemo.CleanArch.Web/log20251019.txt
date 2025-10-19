@@ -522,3 +522,106 @@ SELECT COUNT(*)
 FROM "Products" AS "p"
 2025-10-19 14:34:58.473 +01:00 [INF] Executed endpoint 'HTTP: GET /Products'
 2025-10-19 14:34:58.481 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products - 200 null application/json; charset=utf-8 296.3685ms
+2025-10-19 17:27:59.544 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products/1 - null null
+2025-10-19 17:28:05.055 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products/1 - 404 0 null 5511.5486ms
+2025-10-19 17:28:07.018 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/products/1, Response status code: 404
+2025-10-19 17:28:07.761 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products - null null
+2025-10-19 17:28:07.762 +01:00 [INF] Executing endpoint 'HTTP: GET /Products'
+2025-10-19 17:28:07.806 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."UnitPrice"
+FROM "Products" AS "p"
+ORDER BY "p"."Id"
+LIMIT @__p_1 OFFSET @__p_0
+2025-10-19 17:28:07.806 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "Products" AS "p"
+2025-10-19 17:28:07.807 +01:00 [INF] Executed endpoint 'HTTP: GET /Products'
+2025-10-19 17:28:07.807 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products - 200 null application/json; charset=utf-8 45.9014ms
+2025-10-19 17:28:15.231 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products/1 - null null
+2025-10-19 17:28:15.231 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products/1 - 404 0 null 0.6643ms
+2025-10-19 17:28:15.231 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/products/1, Response status code: 404
+2025-10-19 17:34:49.105 +01:00 [INF] Registered 7 endpoints in 233 milliseconds.
+2025-10-19 17:34:49.978 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-10-19 17:34:50.015 +01:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-10-19 17:34:50.032 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsLock" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK___EFMigrationsLock" PRIMARY KEY,
+    "Timestamp" TEXT NOT NULL
+);
+2025-10-19 17:34:50.037 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-10-19 16:34:50.0334526+00:00');
+SELECT changes();
+2025-10-19 17:34:50.092 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-10-19 17:34:50.106 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-10-19 17:34:50.109 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-10-19 17:34:50.115 +01:00 [INF] Applying migration '20231218143922_PhoneNumber'.
+2025-10-19 17:34:50.123 +01:00 [ERR] Failed executing DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Contributors" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Contributors" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "Status" INTEGER NOT NULL,
+    "PhoneNumber_CountryCode" TEXT NULL,
+    "PhoneNumber_Number" TEXT NULL,
+    "PhoneNumber_Extension" TEXT NULL
+);
+2025-10-19 17:34:50.129 +01:00 [ERR] An error occurred seeding the DB. SQLite Error 1: 'table "Contributors" already exists'.
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'table "Contributors" already exists'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteNonQuery()
+   at System.Data.Common.DbCommand.ExecuteNonQueryAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteAsync(IReadOnlyList`1 migrationCommands, IRelationalConnection connection, MigrationExecutionState executionState, Boolean beginTransaction, Boolean commitTransaction, Nullable`1 isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteAsync(IReadOnlyList`1 migrationCommands, IRelationalConnection connection, MigrationExecutionState executionState, Boolean beginTransaction, Boolean commitTransaction, Nullable`1 isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteNonQueryAsync(IReadOnlyList`1 migrationCommands, IRelationalConnection connection, MigrationExecutionState executionState, Boolean commitTransaction, Nullable`1 isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateImplementationAsync(DbContext context, String targetMigration, MigrationExecutionState state, Boolean useTransaction, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateImplementationAsync(DbContext context, String targetMigration, MigrationExecutionState state, Boolean useTransaction, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.<>c.<<MigrateAsync>b__22_1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at OrderDemo.CleanArch.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Configurations\MiddlewareConfig.cs:line 49
+2025-10-19 17:34:50.406 +01:00 [INF] Now listening on: https://localhost:62022
+2025-10-19 17:34:50.410 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-19 17:34:50.490 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 17:34:50.490 +01:00 [INF] Hosting environment: Development
+2025-10-19 17:34:50.490 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-19 17:34:56.338 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products - null null
+2025-10-19 17:34:56.359 +01:00 [INF] Executing endpoint 'HTTP: GET /Products'
+2025-10-19 17:34:56.517 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."UnitPrice"
+FROM "Products" AS "p"
+ORDER BY "p"."Id"
+LIMIT @__p_1 OFFSET @__p_0
+2025-10-19 17:34:56.534 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "Products" AS "p"
+2025-10-19 17:34:56.543 +01:00 [INF] Executed endpoint 'HTTP: GET /Products'
+2025-10-19 17:34:56.545 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products - 200 null application/json; charset=utf-8 213.2602ms
+2025-10-19 17:35:00.711 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products/1 - null null
+2025-10-19 17:35:00.712 +01:00 [INF] Executing endpoint 'HTTP: GET /Products/{ProductId}'
+2025-10-19 17:35:00.795 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__productId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."UnitPrice"
+FROM "Products" AS "p"
+WHERE "p"."Id" = @__productId_0
+LIMIT 1
+2025-10-19 17:35:00.815 +01:00 [INF] Setting HTTP status code 200.
+2025-10-19 17:35:00.816 +01:00 [INF] Writing value of type 'ProductRecord' as Json.
+2025-10-19 17:35:00.817 +01:00 [INF] Executed endpoint 'HTTP: GET /Products/{ProductId}'
+2025-10-19 17:35:00.818 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products/1 - 200 null application/json; charset=utf-8 107.1847ms

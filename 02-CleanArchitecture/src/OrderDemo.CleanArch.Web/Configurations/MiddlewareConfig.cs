@@ -1,4 +1,5 @@
 ﻿using Ardalis.ListStartupServices;
+using Microsoft.EntityFrameworkCore;
 using OrderDemo.CleanArch.Infrastructure.Data;
 using Scalar.AspNetCore;
 
@@ -45,8 +46,7 @@ public static class MiddlewareConfig
     try
     {
       var context = services.GetRequiredService<AppDbContext>();
-      //await context.Database.MigrateAsync();
-      await context.Database.EnsureCreatedAsync();
+      await context.Database.MigrateAsync();
       await SeedData.InitializeAsync(context);
     }
     catch (Exception ex)
