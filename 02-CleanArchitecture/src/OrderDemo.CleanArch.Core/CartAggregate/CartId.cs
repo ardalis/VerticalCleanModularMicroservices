@@ -1,10 +1,10 @@
-using Vogen;
+﻿using Vogen;
 
 namespace OrderDemo.CleanArch.Core.CartAggregate;
 
-[ValueObject<Guid>]
+[ValueObject<int>]
 public readonly partial struct CartId
 {
-  private static Validation Validate(Guid value)
-      => value != Guid.Empty ? Validation.Ok : Validation.Invalid("CartId cannot be empty.");
+  private static Validation Validate(int value)
+      => value > 0 ? Validation.Ok : Validation.Invalid("CartId must be positive.");
 }

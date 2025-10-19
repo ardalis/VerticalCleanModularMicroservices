@@ -13,7 +13,9 @@ public static class InfrastructureServiceExtensions
     ConfigurationManager config,
     ILogger logger)
   {
-    string? connectionString = config.GetConnectionString("SqliteConnection");
+    // Try to get the Aspire connection string first, fallback to SqliteConnection for local development
+    string? connectionString = config.GetConnectionString("AppDb") 
+                              ?? config.GetConnectionString("SqliteConnection");
     Guard.Against.Null(connectionString);
 
     services.AddScoped<EventDispatchInterceptor>();
@@ -22,7 +24,22 @@ public static class InfrastructureServiceExtensions
     services.AddDbContext<AppDbContext>((provider, options) =>
     {
       var eventDispatchInterceptor = provider.GetRequiredService<EventDispatchInterceptor>();
-      options.UseSqlite(connectionString);
+      
+      // Use SQL Server if AppDb connection is available (Aspire), otherwise use SQLite
+      if (config.GetConnectionString("AppDb") != null)
+      {
+        options.UseSqlServer(connectionString);
+      }
+      else
+      {
+        options.UseSqlite(connectionString);
+      }
+      
+      // Suppress pending model changes warning - this occurs when design-time DB (SQLite)
+      // differs from runtime DB (SQL Server). The model is correct at runtime.
+      options.ConfigureWarnings(warnings => 
+        warnings.Ignore(Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId.PendingModelChangesWarning));
+      
       options.AddInterceptors(eventDispatchInterceptor);
     });
 

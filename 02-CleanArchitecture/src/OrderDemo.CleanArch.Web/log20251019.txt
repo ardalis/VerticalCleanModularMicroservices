@@ -625,3 +625,1057 @@ LIMIT 1
 2025-10-19 17:35:00.816 +01:00 [INF] Writing value of type 'ProductRecord' as Json.
 2025-10-19 17:35:00.817 +01:00 [INF] Executed endpoint 'HTTP: GET /Products/{ProductId}'
 2025-10-19 17:35:00.818 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products/1 - 200 null application/json; charset=utf-8 107.1847ms
+2025-10-19 17:39:40.054 +01:00 [WRN] The foreign key property 'CartItem.CartId1' was created in shadow state because a conflicting property with the simple name 'CartId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2025-10-19 17:40:37.025 +01:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-10-19 17:40:37.064 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-10-19 22:03:50.039 +01:00 [INF] Registered 8 endpoints in 276 milliseconds.
+2025-10-19 22:03:51.043 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-10-19 22:03:51.074 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-10-19 22:03:51.087 +01:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-10-19 21:03:51.0787947+00:00');
+SELECT changes();
+2025-10-19 22:03:51.150 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-10-19 22:03:51.166 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-10-19 22:03:51.170 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-10-19 22:03:51.181 +01:00 [INF] Applying migration '20231218143922_PhoneNumber'.
+2025-10-19 22:03:51.190 +01:00 [ERR] Failed executing DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Contributors" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Contributors" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "Status" INTEGER NOT NULL,
+    "PhoneNumber_CountryCode" TEXT NULL,
+    "PhoneNumber_Number" TEXT NULL,
+    "PhoneNumber_Extension" TEXT NULL
+);
+2025-10-19 22:03:51.198 +01:00 [ERR] An error occurred seeding the DB. SQLite Error 1: 'table "Contributors" already exists'.
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'table "Contributors" already exists'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteNonQuery()
+   at System.Data.Common.DbCommand.ExecuteNonQueryAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteAsync(IReadOnlyList`1 migrationCommands, IRelationalConnection connection, MigrationExecutionState executionState, Boolean beginTransaction, Boolean commitTransaction, Nullable`1 isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteAsync(IReadOnlyList`1 migrationCommands, IRelationalConnection connection, MigrationExecutionState executionState, Boolean beginTransaction, Boolean commitTransaction, Nullable`1 isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteNonQueryAsync(IReadOnlyList`1 migrationCommands, IRelationalConnection connection, MigrationExecutionState executionState, Boolean commitTransaction, Nullable`1 isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateImplementationAsync(DbContext context, String targetMigration, MigrationExecutionState state, Boolean useTransaction, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateImplementationAsync(DbContext context, String targetMigration, MigrationExecutionState state, Boolean useTransaction, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.<>c.<<MigrateAsync>b__22_1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at OrderDemo.CleanArch.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Configurations\MiddlewareConfig.cs:line 49
+2025-10-19 22:03:51.449 +01:00 [INF] Now listening on: https://localhost:64034
+2025-10-19 22:03:51.454 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-19 22:03:52.293 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 22:03:52.294 +01:00 [INF] Hosting environment: Development
+2025-10-19 22:03:52.294 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-19 22:03:59.540 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products - null null
+2025-10-19 22:03:59.561 +01:00 [INF] Executing endpoint 'HTTP: GET /Products'
+2025-10-19 22:03:59.705 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@__p_1='?' (DbType = Int32), @__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."UnitPrice"
+FROM "Products" AS "p"
+ORDER BY "p"."Id"
+LIMIT @__p_1 OFFSET @__p_0
+2025-10-19 22:03:59.721 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM "Products" AS "p"
+2025-10-19 22:03:59.729 +01:00 [INF] Executed endpoint 'HTTP: GET /Products'
+2025-10-19 22:03:59.731 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products - 200 null application/json; charset=utf-8 196.7938ms
+2025-10-19 22:04:01.881 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products/1 - null null
+2025-10-19 22:04:01.883 +01:00 [INF] Executing endpoint 'HTTP: GET /Products/{ProductId}'
+2025-10-19 22:04:01.959 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__productId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."UnitPrice"
+FROM "Products" AS "p"
+WHERE "p"."Id" = @__productId_0
+LIMIT 1
+2025-10-19 22:04:01.978 +01:00 [INF] Setting HTTP status code 200.
+2025-10-19 22:04:01.979 +01:00 [INF] Writing value of type 'ProductRecord' as Json.
+2025-10-19 22:04:01.979 +01:00 [INF] Executed endpoint 'HTTP: GET /Products/{ProductId}'
+2025-10-19 22:04:01.980 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products/1 - 200 null application/json; charset=utf-8 98.4492ms
+2025-10-19 22:04:04.649 +01:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/cart - application/json 37
+2025-10-19 22:04:04.650 +01:00 [INF] Executing endpoint 'HTTP: POST /cart'
+2025-10-19 22:04:04.674 +01:00 [INF] Executed DbCommand (0ms) [Parameters=[@__productId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT "p"."Id", "p"."Name", "p"."UnitPrice"
+FROM "Products" AS "p"
+WHERE "p"."Id" = @__productId_0
+LIMIT 1
+2025-10-19 22:04:04.729 +01:00 [ERR] Failed executing DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Carts" ("Id", "CreatedOn", "Deleted")
+VALUES (@p0, @p1, @p2);
+2025-10-19 22:04:04.733 +01:00 [ERR] An exception occurred in the database while saving changes for context type 'OrderDemo.CleanArch.Infrastructure.Data.AppDbContext'.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such table: Carts'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such table: Carts'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2025-10-19 22:04:04.740 +01:00 [INF] Executed endpoint 'HTTP: POST /cart'
+2025-10-19 22:04:04.741 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such table: Carts'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabase.SaveChangesAsync(IList`1 entries, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Ardalis.Specification.EntityFrameworkCore.RepositoryBase`1.SaveChangesAsync(CancellationToken cancellationToken)
+   at Ardalis.Specification.EntityFrameworkCore.RepositoryBase`1.AddAsync(T entity, CancellationToken cancellationToken)
+   at OrderDemo.CleanArch.UseCases.Cart.AddToCart.AddToCartHandler.Handle(AddToCartCommand request, CancellationToken cancellationToken) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.UseCases\Cart\AddToCart\AddToCartHandler.cs:line 38
+   at OrderDemo.CleanArch.Web.Cart.AddToCart.ExecuteAsync(AddToCartRequest request, CancellationToken ct) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Cart\AddToCart.cs:line 62
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-10-19 22:04:04.757 +01:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/cart - 500 null text/plain; charset=utf-8 107.7978ms
+2025-10-19 22:17:00.720 +01:00 [INF] Registered 8 endpoints in 265 milliseconds.
+2025-10-19 22:17:01.750 +01:00 [ERR] An error occurred seeding the DB. An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'AppDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+System.InvalidOperationException: An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'AppDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+   at Microsoft.EntityFrameworkCore.Diagnostics.EventDefinition`1.Log[TLoggerCategory](IDiagnosticsLogger`1 logger, TParam arg)
+   at Microsoft.EntityFrameworkCore.Diagnostics.RelationalLoggerExtensions.PendingModelChangesWarning(IDiagnosticsLogger`1 diagnostics, Type contextType)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.ValidateMigrations(Boolean useTransaction, String targetMigration)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at OrderDemo.CleanArch.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Configurations\MiddlewareConfig.cs:line 49
+2025-10-19 22:17:01.984 +01:00 [INF] Now listening on: https://localhost:56068
+2025-10-19 22:17:01.988 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-19 22:17:02.639 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 22:17:02.639 +01:00 [INF] Hosting environment: Development
+2025-10-19 22:17:02.639 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-19 22:20:12.973 +01:00 [INF] Registered 8 endpoints in 267 milliseconds.
+2025-10-19 22:20:14.014 +01:00 [ERR] An error occurred seeding the DB. An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'AppDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+System.InvalidOperationException: An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'AppDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+   at Microsoft.EntityFrameworkCore.Diagnostics.EventDefinition`1.Log[TLoggerCategory](IDiagnosticsLogger`1 logger, TParam arg)
+   at Microsoft.EntityFrameworkCore.Diagnostics.RelationalLoggerExtensions.PendingModelChangesWarning(IDiagnosticsLogger`1 diagnostics, Type contextType)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.ValidateMigrations(Boolean useTransaction, String targetMigration)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at OrderDemo.CleanArch.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Configurations\MiddlewareConfig.cs:line 49
+2025-10-19 22:20:14.245 +01:00 [INF] Now listening on: https://localhost:62716
+2025-10-19 22:20:14.250 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-19 22:20:14.932 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 22:20:14.932 +01:00 [INF] Hosting environment: Development
+2025-10-19 22:20:14.932 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-19 22:24:09.085 +01:00 [INF] Registered 8 endpoints in 269 milliseconds.
+2025-10-19 22:24:09.295 +01:00 [WRN] DROPPING database for fresh start (DatabaseOptions:RecreateOnStartup = true)...
+2025-10-19 22:24:10.292 +01:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-19 22:24:13.444 +01:00 [INF] Executed DbCommand (3,071ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [AppDb] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+END;
+2025-10-19 22:24:14.138 +01:00 [INF] Executed DbCommand (693ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+DROP DATABASE [AppDb];
+2025-10-19 22:24:14.143 +01:00 [INF] Database dropped.
+2025-10-19 22:24:14.143 +01:00 [INF] Applying database migrations...
+2025-10-19 22:24:14.321 +01:00 [ERR] An error occurred seeding the DB. An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'AppDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+System.InvalidOperationException: An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'AppDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+   at Microsoft.EntityFrameworkCore.Diagnostics.EventDefinition`1.Log[TLoggerCategory](IDiagnosticsLogger`1 logger, TParam arg)
+   at Microsoft.EntityFrameworkCore.Diagnostics.RelationalLoggerExtensions.PendingModelChangesWarning(IDiagnosticsLogger`1 diagnostics, Type contextType)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.ValidateMigrations(Boolean useTransaction, String targetMigration)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at OrderDemo.CleanArch.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Configurations\MiddlewareConfig.cs:line 63
+2025-10-19 22:24:14.537 +01:00 [INF] Now listening on: https://localhost:54609
+2025-10-19 22:24:14.542 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-19 22:24:15.246 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 22:24:15.246 +01:00 [INF] Hosting environment: Development
+2025-10-19 22:24:15.246 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-19 22:27:10.426 +01:00 [INF] Registered 8 endpoints in 262 milliseconds.
+2025-10-19 22:27:10.634 +01:00 [WRN] DROPPING database for fresh start (DatabaseOptions:RecreateOnStartup = true)...
+2025-10-19 22:27:11.477 +01:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-19 22:27:14.509 +01:00 [INF] Executed DbCommand (2,950ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [AppDb] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+END;
+2025-10-19 22:27:14.552 +01:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+DROP DATABASE [AppDb];
+2025-10-19 22:27:14.557 +01:00 [INF] Database dropped.
+2025-10-19 22:27:14.558 +01:00 [INF] Applying database migrations...
+2025-10-19 22:27:14.743 +01:00 [ERR] An error occurred seeding the DB. An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'AppDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+System.InvalidOperationException: An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'AppDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+   at Microsoft.EntityFrameworkCore.Diagnostics.EventDefinition`1.Log[TLoggerCategory](IDiagnosticsLogger`1 logger, TParam arg)
+   at Microsoft.EntityFrameworkCore.Diagnostics.RelationalLoggerExtensions.PendingModelChangesWarning(IDiagnosticsLogger`1 diagnostics, Type contextType)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.ValidateMigrations(Boolean useTransaction, String targetMigration)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at OrderDemo.CleanArch.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Configurations\MiddlewareConfig.cs:line 63
+2025-10-19 22:27:14.988 +01:00 [INF] Now listening on: https://localhost:56412
+2025-10-19 22:27:14.993 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-19 22:27:15.702 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 22:27:15.703 +01:00 [INF] Hosting environment: Development
+2025-10-19 22:27:15.703 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-19 22:31:27.108 +01:00 [INF] Registered 8 endpoints in 243 milliseconds.
+2025-10-19 22:31:27.309 +01:00 [WRN] DROPPING database for fresh start (DatabaseOptions:RecreateOnStartup = true)...
+2025-10-19 22:31:28.190 +01:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-19 22:31:31.287 +01:00 [INF] Executed DbCommand (3,015ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [AppDb] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+END;
+2025-10-19 22:31:31.339 +01:00 [INF] Executed DbCommand (51ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+DROP DATABASE [AppDb];
+2025-10-19 22:31:31.344 +01:00 [INF] Database dropped.
+2025-10-19 22:31:31.344 +01:00 [INF] Applying database migrations...
+2025-10-19 22:31:31.744 +01:00 [INF] Executed DbCommand (290ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [AppDb];
+2025-10-19 22:31:31.925 +01:00 [INF] Executed DbCommand (181ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [AppDb] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2025-10-19 22:31:31.979 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-19 22:31:31.983 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-10-19 22:31:32.017 +01:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-10-19 22:31:32.085 +01:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-10-19 22:31:32.110 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-19 22:31:32.113 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-10-19 22:31:32.147 +01:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-10-19 22:31:32.160 +01:00 [INF] Applying migration '20251019212000_InitialMigration'.
+2025-10-19 22:31:32.215 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2025-10-19 22:31:32.220 +01:00 [ERR] An error occurred seeding the DB. Unable to cast object of type 'System.Decimal' to type 'System.String'.
+System.InvalidCastException: Unable to cast object of type 'System.Decimal' to type 'System.String'.
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerStringTypeMapping.GenerateNonNullSqlLiteral(Object value)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalTypeMapping.GenerateProviderValueSqlLiteral(Object value)
+   at Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendSqlLiteral(StringBuilder commandStringBuilder, IColumnModification modification, String tableName, String schema)
+   at Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.<>c.<AppendValues>b__24_0(StringBuilder sb, IColumnModification o, ValueTuple`3 p)
+   at System.Text.StringBuilderExtensions.AppendJoin[T,TParam](StringBuilder stringBuilder, IEnumerable`1 values, TParam param, Action`3 joinAction, String separator)
+   at Microsoft.EntityFrameworkCore.Update.UpdateSqlGenerator.AppendValues(StringBuilder commandStringBuilder, String name, String schema, IReadOnlyList`1 operations)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerUpdateSqlGenerator.AppendInsertMultipleRows(StringBuilder commandStringBuilder, IReadOnlyList`1 modificationCommands, List`1 writeOperations, Boolean& requiresTransaction)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerUpdateSqlGenerator.AppendBulkInsertOperation(StringBuilder commandStringBuilder, IReadOnlyList`1 modificationCommands, Int32 commandPosition, Boolean& requiresTransaction)
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.ApplyPendingBulkInsertCommands()
+   at Microsoft.EntityFrameworkCore.SqlServer.Update.Internal.SqlServerModificationCommandBatch.Complete(Boolean moreBatchesExpected)
+   at Microsoft.EntityFrameworkCore.Update.Internal.CommandBatchPreparer.CreateCommandBatches(IEnumerable`1 commandSet, Boolean moreCommandSets, Boolean assertColumnModification, ParameterNameGenerator parameterNameGenerator)+MoveNext()
+   at Microsoft.EntityFrameworkCore.Migrations.SqlServerMigrationsSqlGenerator.Generate(InsertDataOperation operation, IModel model, MigrationCommandListBuilder builder, Boolean terminate)
+   at Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.<>c.<.cctor>b__83_28(MigrationsSqlGenerator g, MigrationOperation o, IModel m, MigrationCommandListBuilder b)
+   at Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(MigrationOperation operation, IModel model, MigrationCommandListBuilder builder)
+   at Microsoft.EntityFrameworkCore.Migrations.SqlServerMigrationsSqlGenerator.Generate(MigrationOperation operation, IModel model, MigrationCommandListBuilder builder)
+   at Microsoft.EntityFrameworkCore.Migrations.MigrationsSqlGenerator.Generate(IReadOnlyList`1 operations, IModel model, MigrationsSqlGenerationOptions options)
+   at Microsoft.EntityFrameworkCore.Migrations.SqlServerMigrationsSqlGenerator.Generate(IReadOnlyList`1 operations, IModel model, MigrationsSqlGenerationOptions options)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.GenerateUpSql(Migration migration, MigrationsSqlGenerationOptions options)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.<>c__DisplayClass25_2.<GetMigrationCommandLists>b__2()
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateImplementationAsync(DbContext context, String targetMigration, MigrationExecutionState state, Boolean useTransaction, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateImplementationAsync(DbContext context, String targetMigration, MigrationExecutionState state, Boolean useTransaction, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.<>c.<<MigrateAsync>b__22_1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at OrderDemo.CleanArch.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Configurations\MiddlewareConfig.cs:line 63
+2025-10-19 22:31:32.460 +01:00 [INF] Now listening on: https://localhost:62606
+2025-10-19 22:31:32.464 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-19 22:31:33.119 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 22:31:33.119 +01:00 [INF] Hosting environment: Development
+2025-10-19 22:31:33.119 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-19 22:36:10.317 +01:00 [INF] Registered 8 endpoints in 249 milliseconds.
+2025-10-19 22:36:10.511 +01:00 [WRN] DROPPING database for fresh start (DatabaseOptions:RecreateOnStartup = true)...
+2025-10-19 22:36:11.405 +01:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-19 22:36:14.430 +01:00 [INF] Executed DbCommand (2,939ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [AppDb] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+END;
+2025-10-19 22:36:14.481 +01:00 [INF] Executed DbCommand (50ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+DROP DATABASE [AppDb];
+2025-10-19 22:36:14.486 +01:00 [INF] Database dropped.
+2025-10-19 22:36:14.486 +01:00 [INF] Applying database migrations...
+2025-10-19 22:36:14.911 +01:00 [INF] Executed DbCommand (301ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [AppDb];
+2025-10-19 22:36:15.090 +01:00 [INF] Executed DbCommand (178ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [AppDb] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2025-10-19 22:36:15.143 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-19 22:36:15.146 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-10-19 22:36:15.175 +01:00 [INF] Executed DbCommand (24ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-10-19 22:36:15.237 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-10-19 22:36:15.261 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-19 22:36:15.264 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-10-19 22:36:15.297 +01:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-10-19 22:36:15.309 +01:00 [INF] Applying migration '20251019213302_InitialCreate'.
+2025-10-19 22:36:15.366 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Carts] (
+    [Id] uniqueidentifier NOT NULL,
+    [CreatedOn] datetime2 NOT NULL,
+    [Deleted] bit NOT NULL,
+    CONSTRAINT [PK_Carts] PRIMARY KEY ([Id])
+);
+2025-10-19 22:36:15.370 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Contributors] (
+    [Id] int NOT NULL,
+    [Name] nvarchar(100) NOT NULL,
+    [Status] int NOT NULL,
+    [PhoneNumber_CountryCode] nvarchar(max) NULL,
+    [PhoneNumber_Number] nvarchar(max) NULL,
+    [PhoneNumber_Extension] nvarchar(max) NULL,
+    CONSTRAINT [PK_Contributors] PRIMARY KEY ([Id])
+);
+2025-10-19 22:36:15.373 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Products] (
+    [Id] int NOT NULL,
+    [Name] nvarchar(100) NOT NULL,
+    [UnitPrice] decimal(18,2) NOT NULL,
+    CONSTRAINT [PK_Products] PRIMARY KEY ([Id])
+);
+2025-10-19 22:36:15.377 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CartItems] (
+    [Id] uniqueidentifier NOT NULL,
+    [ProductId] int NOT NULL,
+    [Quantity] int NOT NULL,
+    [UnitPrice] decimal(18,2) NOT NULL,
+    [CartId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_CartItems] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_CartItems_Carts_CartId] FOREIGN KEY ([CartId]) REFERENCES [Carts] ([Id]) ON DELETE CASCADE
+);
+2025-10-19 22:36:15.452 +01:00 [INF] Executed DbCommand (74ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Name', N'UnitPrice') AND [object_id] = OBJECT_ID(N'[Products]'))
+    SET IDENTITY_INSERT [Products] ON;
+INSERT INTO [Products] ([Id], [Name], [UnitPrice])
+VALUES (1, N'Laptop', 999.99),
+(2, N'Smartphone', 499.99),
+(3, N'Tablet', 299.99);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Name', N'UnitPrice') AND [object_id] = OBJECT_ID(N'[Products]'))
+    SET IDENTITY_INSERT [Products] OFF;
+2025-10-19 22:36:15.456 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CartItems_CartId] ON [CartItems] ([CartId]);
+2025-10-19 22:36:15.460 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20251019213302_InitialCreate', N'9.0.10');
+2025-10-19 22:36:15.471 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2025-10-19 22:36:15.473 +01:00 [INF] Database migrations applied successfully.
+2025-10-19 22:36:15.669 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Contributors] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-10-19 22:36:15.683 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-10-19 22:36:15.910 +01:00 [INF] Now listening on: https://localhost:61184
+2025-10-19 22:36:15.914 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-19 22:36:16.000 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 22:36:16.000 +01:00 [INF] Hosting environment: Development
+2025-10-19 22:36:16.001 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-19 22:36:30.890 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products - null null
+2025-10-19 22:36:30.918 +01:00 [INF] Executing endpoint 'HTTP: GET /Products'
+2025-10-19 22:36:30.993 +01:00 [INF] Executed DbCommand (15ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[UnitPrice]
+FROM [Products] AS [p]
+ORDER BY [p].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-10-19 22:36:31.018 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+2025-10-19 22:36:31.028 +01:00 [INF] Executed endpoint 'HTTP: GET /Products'
+2025-10-19 22:36:31.030 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products - 200 null application/json; charset=utf-8 144.8684ms
+2025-10-19 22:36:34.001 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products/1 - null null
+2025-10-19 22:36:34.003 +01:00 [INF] Executing endpoint 'HTTP: GET /Products/{ProductId}'
+2025-10-19 22:36:34.097 +01:00 [INF] Executed DbCommand (20ms) [Parameters=[@__productId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Name], [p].[UnitPrice]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__productId_0
+2025-10-19 22:36:34.122 +01:00 [INF] Setting HTTP status code 200.
+2025-10-19 22:36:34.122 +01:00 [INF] Writing value of type 'ProductRecord' as Json.
+2025-10-19 22:36:34.123 +01:00 [INF] Executed endpoint 'HTTP: GET /Products/{ProductId}'
+2025-10-19 22:36:34.124 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products/1 - 200 null application/json; charset=utf-8 122.4927ms
+2025-10-19 22:36:36.868 +01:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/cart - application/json 37
+2025-10-19 22:36:36.868 +01:00 [INF] Executing endpoint 'HTTP: POST /cart'
+2025-10-19 22:36:36.886 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__productId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Name], [p].[UnitPrice]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__productId_0
+2025-10-19 22:36:36.956 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Carts] ([Id], [CreatedOn], [Deleted])
+VALUES (@p0, @p1, @p2);
+2025-10-19 22:36:36.981 +01:00 [INF] Executed endpoint 'HTTP: POST /cart'
+2025-10-19 22:36:36.981 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+Vogen.ValueObjectValidationException: Use of uninitialized Value Object at: 
+   at OrderDemo.CleanArch.Core.CartAggregate.CartId.ThrowHelper.ThrowWhenNotInitialized(StackTrace stackTrace) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Core\obj\Debug\net10.0\Vogen\Vogen.ValueObjectGenerator\OrderDemo.CleanArch.Core.CartAggregate_CartId.g.cs:line 647
+   at OrderDemo.CleanArch.Core.CartAggregate.CartId.GetHashCode() in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Core\obj\Debug\net10.0\Vogen\Vogen.ValueObjectGenerator\OrderDemo.CleanArch.Core.CartAggregate_CartId.g.cs:line 489
+   at Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer`1.GetHashCode(T instance)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.SimplePrincipalKeyValueFactory`1.NoNullsCustomEqualityComparer.GetHashCode(TKey obj)
+   at System.Collections.Generic.Dictionary`2.FindValue(TKey key)
+   at System.Collections.Generic.Dictionary`2.TryGetValue(TKey key, TValue& value)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.TryGetEntry(IForeignKey foreignKey, InternalEntityEntry dependentEntry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.FindPrincipal(InternalEntityEntry dependentEntry, IForeignKey foreignKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.NavigationFixer.InitialFixup(InternalEntityEntry entry, InternalEntityEntry duplicateEntry, Boolean fromQuery)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.NavigationFixer.StateChanged(InternalEntityEntry entry, EntityState oldState, Boolean fromQuery)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntryNotifier.StateChanged(InternalEntityEntry entry, EntityState oldState, Boolean fromQuery)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.FireStateChanged(EntityState oldState)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey, Nullable`1 fallbackState)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode`1 node)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode`1 node, Func`2 handleNode)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.AttachGraph(InternalEntityEntry rootEntry, EntityState targetState, EntityState storeGeneratedWithKeySetTargetState, Boolean forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.NavigationFixer.NavigationCollectionChanged(InternalEntityEntry entry, INavigationBase navigationBase, IEnumerable`1 added, IEnumerable`1 removed)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntryNotifier.NavigationCollectionChanged(InternalEntityEntry entry, INavigationBase navigationBase, IEnumerable`1 added, IEnumerable`1 removed)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.DetectNavigationChange(InternalEntityEntry entry, INavigationBase navigationBase)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.LocalDetectChanges(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.DetectChanges(IStateManager stateManager)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges()
+   at Microsoft.EntityFrameworkCore.DbContext.TryDetectChanges()
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Ardalis.Specification.EntityFrameworkCore.RepositoryBase`1.SaveChangesAsync(CancellationToken cancellationToken)
+   at OrderDemo.CleanArch.UseCases.Cart.AddToCart.AddToCartHandler.Handle(AddToCartCommand request, CancellationToken cancellationToken) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.UseCases\Cart\AddToCart\AddToCartHandler.cs:line 45
+   at OrderDemo.CleanArch.Web.Cart.AddToCart.ExecuteAsync(AddToCartRequest request, CancellationToken ct) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Cart\AddToCart.cs:line 62
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-10-19 22:36:37.017 +01:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/cart - 500 null text/plain; charset=utf-8 149.2599ms
+2025-10-19 22:38:39.819 +01:00 [INF] Registered 8 endpoints in 273 milliseconds.
+2025-10-19 22:38:40.026 +01:00 [WRN] DROPPING database for fresh start (DatabaseOptions:RecreateOnStartup = true)...
+2025-10-19 22:38:40.658 +01:00 [WRN] The foreign key property 'CartItem.CartId1' was created in shadow state because a conflicting property with the simple name 'CartId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2025-10-19 22:38:41.034 +01:00 [INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-19 22:38:44.103 +01:00 [INF] Executed DbCommand (2,989ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [AppDb] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+END;
+2025-10-19 22:38:44.156 +01:00 [INF] Executed DbCommand (53ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+DROP DATABASE [AppDb];
+2025-10-19 22:38:44.160 +01:00 [INF] Database dropped.
+2025-10-19 22:38:44.160 +01:00 [INF] Applying database migrations...
+2025-10-19 22:38:44.595 +01:00 [INF] Executed DbCommand (335ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [AppDb];
+2025-10-19 22:38:44.776 +01:00 [INF] Executed DbCommand (181ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [AppDb] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2025-10-19 22:38:44.837 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-19 22:38:44.840 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-10-19 22:38:44.860 +01:00 [INF] Executed DbCommand (17ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-10-19 22:38:44.907 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-10-19 22:38:44.928 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-19 22:38:44.931 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-10-19 22:38:44.968 +01:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-10-19 22:38:44.976 +01:00 [INF] Applying migration '20251019213302_InitialCreate'.
+2025-10-19 22:38:45.006 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Carts] (
+    [Id] uniqueidentifier NOT NULL,
+    [CreatedOn] datetime2 NOT NULL,
+    [Deleted] bit NOT NULL,
+    CONSTRAINT [PK_Carts] PRIMARY KEY ([Id])
+);
+2025-10-19 22:38:45.009 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Contributors] (
+    [Id] int NOT NULL,
+    [Name] nvarchar(100) NOT NULL,
+    [Status] int NOT NULL,
+    [PhoneNumber_CountryCode] nvarchar(max) NULL,
+    [PhoneNumber_Number] nvarchar(max) NULL,
+    [PhoneNumber_Extension] nvarchar(max) NULL,
+    CONSTRAINT [PK_Contributors] PRIMARY KEY ([Id])
+);
+2025-10-19 22:38:45.011 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Products] (
+    [Id] int NOT NULL,
+    [Name] nvarchar(100) NOT NULL,
+    [UnitPrice] decimal(18,2) NOT NULL,
+    CONSTRAINT [PK_Products] PRIMARY KEY ([Id])
+);
+2025-10-19 22:38:45.014 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CartItems] (
+    [Id] uniqueidentifier NOT NULL,
+    [ProductId] int NOT NULL,
+    [Quantity] int NOT NULL,
+    [UnitPrice] decimal(18,2) NOT NULL,
+    [CartId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_CartItems] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_CartItems_Carts_CartId] FOREIGN KEY ([CartId]) REFERENCES [Carts] ([Id]) ON DELETE CASCADE
+);
+2025-10-19 22:38:45.078 +01:00 [INF] Executed DbCommand (63ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Name', N'UnitPrice') AND [object_id] = OBJECT_ID(N'[Products]'))
+    SET IDENTITY_INSERT [Products] ON;
+INSERT INTO [Products] ([Id], [Name], [UnitPrice])
+VALUES (1, N'Laptop', 999.99),
+(2, N'Smartphone', 499.99),
+(3, N'Tablet', 299.99);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Name', N'UnitPrice') AND [object_id] = OBJECT_ID(N'[Products]'))
+    SET IDENTITY_INSERT [Products] OFF;
+2025-10-19 22:38:45.081 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CartItems_CartId] ON [CartItems] ([CartId]);
+2025-10-19 22:38:45.084 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20251019213302_InitialCreate', N'9.0.10');
+2025-10-19 22:38:45.096 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2025-10-19 22:38:45.097 +01:00 [INF] Database migrations applied successfully.
+2025-10-19 22:38:45.227 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Contributors] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-10-19 22:38:45.240 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-10-19 22:38:45.426 +01:00 [INF] Now listening on: https://localhost:61799
+2025-10-19 22:38:45.429 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-19 22:38:45.899 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 22:38:45.899 +01:00 [INF] Hosting environment: Development
+2025-10-19 22:38:45.899 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-19 22:39:52.921 +01:00 [INF] Registered 8 endpoints in 239 milliseconds.
+2025-10-19 22:39:53.121 +01:00 [WRN] DROPPING database for fresh start (DatabaseOptions:RecreateOnStartup = true)...
+2025-10-19 22:39:53.683 +01:00 [WRN] The foreign key property 'CartItem.CartId1' was created in shadow state because a conflicting property with the simple name 'CartId' exists in the entity type, but is either not mapped, is already used for another relationship, or is incompatible with the associated primary key type. See https://aka.ms/efcore-relationships for information on mapping relationships in EF Core.
+2025-10-19 22:39:54.069 +01:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-19 22:39:57.052 +01:00 [INF] Executed DbCommand (2,890ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [AppDb] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+END;
+2025-10-19 22:39:57.099 +01:00 [INF] Executed DbCommand (46ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+DROP DATABASE [AppDb];
+2025-10-19 22:39:57.102 +01:00 [INF] Database dropped.
+2025-10-19 22:39:57.102 +01:00 [INF] Applying database migrations...
+2025-10-19 22:39:57.464 +01:00 [INF] Executed DbCommand (273ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [AppDb];
+2025-10-19 22:39:57.636 +01:00 [INF] Executed DbCommand (172ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [AppDb] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2025-10-19 22:39:57.688 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-19 22:39:57.690 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-10-19 22:39:57.706 +01:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-10-19 22:39:57.748 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-10-19 22:39:57.768 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-19 22:39:57.770 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-10-19 22:39:57.798 +01:00 [INF] Executed DbCommand (26ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-10-19 22:39:57.806 +01:00 [INF] Applying migration '20251019213923_InitialCreate'.
+2025-10-19 22:39:57.828 +01:00 [ERR] Failed executing DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE [CartItems] DROP CONSTRAINT [FK_CartItems_Carts_CartId];
+2025-10-19 22:39:57.835 +01:00 [ERR] An error occurred seeding the DB. Cannot find the object "CartItems" because it does not exist or you do not have permissions.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot find the object "CartItems" because it does not exist or you do not have permissions.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlCommand.InternalEndExecuteNonQuery(IAsyncResult asyncResult, Boolean isInternal, String endMethod)
+   at Microsoft.Data.SqlClient.SqlCommand.EndExecuteNonQueryInternal(IAsyncResult asyncResult)
+   at Microsoft.Data.SqlClient.SqlCommand.EndExecuteNonQueryAsync(IAsyncResult asyncResult)
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<InternalExecuteNonQueryAsync>b__210_1(IAsyncResult result)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteAsync(IReadOnlyList`1 migrationCommands, IRelationalConnection connection, MigrationExecutionState executionState, Boolean beginTransaction, Boolean commitTransaction, Nullable`1 isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteAsync(IReadOnlyList`1 migrationCommands, IRelationalConnection connection, MigrationExecutionState executionState, Boolean beginTransaction, Boolean commitTransaction, Nullable`1 isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.MigrationCommandExecutor.ExecuteNonQueryAsync(IReadOnlyList`1 migrationCommands, IRelationalConnection connection, MigrationExecutionState executionState, Boolean commitTransaction, Nullable`1 isolationLevel, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateImplementationAsync(DbContext context, String targetMigration, MigrationExecutionState state, Boolean useTransaction, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateImplementationAsync(DbContext context, String targetMigration, MigrationExecutionState state, Boolean useTransaction, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.<>c.<<MigrateAsync>b__22_1>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at OrderDemo.CleanArch.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Configurations\MiddlewareConfig.cs:line 63
+ClientConnectionId:38a577c9-b55d-4b2b-aa1a-29baf3b32ad3
+Error Number:4902,State:1,Class:16
+2025-10-19 22:39:57.987 +01:00 [INF] Now listening on: https://localhost:53254
+2025-10-19 22:39:57.989 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-19 22:39:58.377 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 22:39:58.377 +01:00 [INF] Hosting environment: Development
+2025-10-19 22:39:58.377 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-19 22:40:01.380 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products - null null
+2025-10-19 22:40:01.405 +01:00 [INF] Executing endpoint 'HTTP: GET /Products'
+2025-10-19 22:40:01.576 +01:00 [ERR] Failed executing DbCommand (11ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[UnitPrice]
+FROM [Products] AS [p]
+ORDER BY [p].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-10-19 22:40:01.578 +01:00 [ERR] An exception occurred while iterating over the results of a query for context type 'OrderDemo.CleanArch.Infrastructure.Data.AppDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Products'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:38a577c9-b55d-4b2b-aa1a-29baf3b32ad3
+Error Number:208,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Products'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:38a577c9-b55d-4b2b-aa1a-29baf3b32ad3
+Error Number:208,State:1,Class:16
+2025-10-19 22:40:01.580 +01:00 [INF] Executed endpoint 'HTTP: GET /Products'
+2025-10-19 22:40:01.581 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Products'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at OrderDemo.CleanArch.Infrastructure.Data.Queries.ListProductsQueryService.ListAsync(Int32 page, Int32 perPage) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\Queries\ListProductsQueryService.cs:line 18
+   at OrderDemo.CleanArch.UseCases.Products.List.ListProductsHandler.Handle(ListProductsQuery request, CancellationToken cancellationToken) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.UseCases\Products\List\ListProductsHandler.cs:line 16
+   at OrderDemo.CleanArch.Web.Products.List.HandleAsync(ListProductsRequest request, CancellationToken cancellationToken) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Products\List.cs:line 47
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+ClientConnectionId:38a577c9-b55d-4b2b-aa1a-29baf3b32ad3
+Error Number:208,State:1,Class:16
+2025-10-19 22:40:01.601 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products - 500 null text/plain; charset=utf-8 227.1513ms
+2025-10-19 22:40:18.844 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products - null null
+2025-10-19 22:40:18.845 +01:00 [INF] Executing endpoint 'HTTP: GET /Products'
+2025-10-19 22:40:18.892 +01:00 [ERR] Failed executing DbCommand (3ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[UnitPrice]
+FROM [Products] AS [p]
+ORDER BY [p].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-10-19 22:40:18.892 +01:00 [ERR] An exception occurred while iterating over the results of a query for context type 'OrderDemo.CleanArch.Infrastructure.Data.AppDbContext'.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Products'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:38a577c9-b55d-4b2b-aa1a-29baf3b32ad3
+Error Number:208,State:1,Class:16
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Products'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+ClientConnectionId:38a577c9-b55d-4b2b-aa1a-29baf3b32ad3
+Error Number:208,State:1,Class:16
+2025-10-19 22:40:18.893 +01:00 [INF] Executed endpoint 'HTTP: GET /Products'
+2025-10-19 22:40:18.893 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Invalid object name 'Products'.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__211_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at OrderDemo.CleanArch.Infrastructure.Data.Queries.ListProductsQueryService.ListAsync(Int32 page, Int32 perPage) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Infrastructure\Data\Queries\ListProductsQueryService.cs:line 18
+   at OrderDemo.CleanArch.UseCases.Products.List.ListProductsHandler.Handle(ListProductsQuery request, CancellationToken cancellationToken) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.UseCases\Products\List\ListProductsHandler.cs:line 16
+   at OrderDemo.CleanArch.Web.Products.List.HandleAsync(ListProductsRequest request, CancellationToken cancellationToken) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Products\List.cs:line 47
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+ClientConnectionId:38a577c9-b55d-4b2b-aa1a-29baf3b32ad3
+Error Number:208,State:1,Class:16
+2025-10-19 22:40:18.911 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products - 500 null text/plain; charset=utf-8 67.314ms
+2025-10-19 22:43:03.060 +01:00 [INF] Registered 8 endpoints in 280 milliseconds.
+2025-10-19 22:43:03.263 +01:00 [WRN] DROPPING database for fresh start (DatabaseOptions:RecreateOnStartup = true)...
+2025-10-19 22:43:04.206 +01:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-19 22:43:07.254 +01:00 [INF] Executed DbCommand (2,964ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [AppDb] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+END;
+2025-10-19 22:43:07.296 +01:00 [INF] Executed DbCommand (41ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+DROP DATABASE [AppDb];
+2025-10-19 22:43:07.302 +01:00 [INF] Database dropped.
+2025-10-19 22:43:07.302 +01:00 [INF] Applying database migrations...
+2025-10-19 22:43:07.704 +01:00 [INF] Executed DbCommand (283ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [AppDb];
+2025-10-19 22:43:07.906 +01:00 [INF] Executed DbCommand (202ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [AppDb] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2025-10-19 22:43:07.965 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-19 22:43:07.971 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-10-19 22:43:08.001 +01:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-10-19 22:43:08.086 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-10-19 22:43:08.115 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-19 22:43:08.118 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-10-19 22:43:08.155 +01:00 [INF] Executed DbCommand (31ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-10-19 22:43:08.168 +01:00 [INF] Applying migration '20251019214211_Initial'.
+2025-10-19 22:43:08.242 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Carts] (
+    [Id] uniqueidentifier NOT NULL,
+    [CreatedOn] datetime2 NOT NULL,
+    [Deleted] bit NOT NULL,
+    CONSTRAINT [PK_Carts] PRIMARY KEY ([Id])
+);
+2025-10-19 22:43:08.248 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Contributors] (
+    [Id] int NOT NULL,
+    [Name] nvarchar(100) NOT NULL,
+    [Status] int NOT NULL,
+    [PhoneNumber_CountryCode] nvarchar(max) NULL,
+    [PhoneNumber_Number] nvarchar(max) NULL,
+    [PhoneNumber_Extension] nvarchar(max) NULL,
+    CONSTRAINT [PK_Contributors] PRIMARY KEY ([Id])
+);
+2025-10-19 22:43:08.253 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Products] (
+    [Id] int NOT NULL,
+    [Name] nvarchar(100) NOT NULL,
+    [UnitPrice] decimal(18,2) NOT NULL,
+    CONSTRAINT [PK_Products] PRIMARY KEY ([Id])
+);
+2025-10-19 22:43:08.263 +01:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CartItems] (
+    [Id] uniqueidentifier NOT NULL,
+    [ProductId] int NOT NULL,
+    [Quantity] int NOT NULL,
+    [UnitPrice] decimal(18,2) NOT NULL,
+    [CartId] uniqueidentifier NOT NULL,
+    CONSTRAINT [PK_CartItems] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_CartItems_Carts_CartId] FOREIGN KEY ([CartId]) REFERENCES [Carts] ([Id]) ON DELETE CASCADE
+);
+2025-10-19 22:43:08.358 +01:00 [INF] Executed DbCommand (95ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Name', N'UnitPrice') AND [object_id] = OBJECT_ID(N'[Products]'))
+    SET IDENTITY_INSERT [Products] ON;
+INSERT INTO [Products] ([Id], [Name], [UnitPrice])
+VALUES (1, N'Laptop', 999.99),
+(2, N'Smartphone', 499.99),
+(3, N'Tablet', 299.99);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Name', N'UnitPrice') AND [object_id] = OBJECT_ID(N'[Products]'))
+    SET IDENTITY_INSERT [Products] OFF;
+2025-10-19 22:43:08.363 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CartItems_CartId] ON [CartItems] ([CartId]);
+2025-10-19 22:43:08.370 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20251019214211_Initial', N'9.0.10');
+2025-10-19 22:43:08.389 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2025-10-19 22:43:08.392 +01:00 [INF] Database migrations applied successfully.
+2025-10-19 22:43:08.660 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Contributors] AS [c]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-10-19 22:43:08.674 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-10-19 22:43:08.923 +01:00 [INF] Now listening on: https://localhost:53241
+2025-10-19 22:43:08.927 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-19 22:43:09.763 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-19 22:43:09.763 +01:00 [INF] Hosting environment: Development
+2025-10-19 22:43:09.764 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-19 22:43:16.546 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products - null null
+2025-10-19 22:43:16.577 +01:00 [INF] Executing endpoint 'HTTP: GET /Products'
+2025-10-19 22:43:16.650 +01:00 [INF] Executed DbCommand (9ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[UnitPrice]
+FROM [Products] AS [p]
+ORDER BY [p].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-10-19 22:43:16.673 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+2025-10-19 22:43:16.683 +01:00 [INF] Executed endpoint 'HTTP: GET /Products'
+2025-10-19 22:43:16.686 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products - 200 null application/json; charset=utf-8 144.9075ms
+2025-10-19 22:43:19.090 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products/1 - null null
+2025-10-19 22:43:19.091 +01:00 [INF] Executing endpoint 'HTTP: GET /Products/{ProductId}'
+2025-10-19 22:43:19.184 +01:00 [INF] Executed DbCommand (17ms) [Parameters=[@__productId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Name], [p].[UnitPrice]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__productId_0
+2025-10-19 22:43:19.205 +01:00 [INF] Setting HTTP status code 200.
+2025-10-19 22:43:19.205 +01:00 [INF] Writing value of type 'ProductRecord' as Json.
+2025-10-19 22:43:19.206 +01:00 [INF] Executed endpoint 'HTTP: GET /Products/{ProductId}'
+2025-10-19 22:43:19.206 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products/1 - 200 null application/json; charset=utf-8 116.4097ms
+2025-10-19 22:43:21.589 +01:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/cart - application/json 37
+2025-10-19 22:43:21.589 +01:00 [INF] Executing endpoint 'HTTP: POST /cart'
+2025-10-19 22:43:21.607 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__productId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Name], [p].[UnitPrice]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__productId_0
+2025-10-19 22:43:21.672 +01:00 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Carts] ([Id], [CreatedOn], [Deleted])
+VALUES (@p0, @p1, @p2);
+2025-10-19 22:43:21.693 +01:00 [INF] Executed endpoint 'HTTP: POST /cart'
+2025-10-19 22:43:21.693 +01:00 [ERR] An unhandled exception has occurred while executing the request.
+Vogen.ValueObjectValidationException: Use of uninitialized Value Object at: 
+   at OrderDemo.CleanArch.Core.CartAggregate.CartId.ThrowHelper.ThrowWhenNotInitialized(StackTrace stackTrace) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Core\obj\Debug\net10.0\Vogen\Vogen.ValueObjectGenerator\OrderDemo.CleanArch.Core.CartAggregate_CartId.g.cs:line 647
+   at OrderDemo.CleanArch.Core.CartAggregate.CartId.GetHashCode() in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Core\obj\Debug\net10.0\Vogen\Vogen.ValueObjectGenerator\OrderDemo.CleanArch.Core.CartAggregate_CartId.g.cs:line 489
+   at Microsoft.EntityFrameworkCore.ChangeTracking.ValueComparer`1.GetHashCode(T instance)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.SimplePrincipalKeyValueFactory`1.NoNullsCustomEqualityComparer.GetHashCode(TKey obj)
+   at System.Collections.Generic.Dictionary`2.FindValue(TKey key)
+   at System.Collections.Generic.Dictionary`2.TryGetValue(TKey key, TValue& value)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.TryGetEntry(IForeignKey foreignKey, InternalEntityEntry dependentEntry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.FindPrincipal(InternalEntityEntry dependentEntry, IForeignKey foreignKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.NavigationFixer.InitialFixup(InternalEntityEntry entry, InternalEntityEntry duplicateEntry, Boolean fromQuery)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.NavigationFixer.StateChanged(InternalEntityEntry entry, EntityState oldState, Boolean fromQuery)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntryNotifier.StateChanged(InternalEntityEntry entry, EntityState oldState, Boolean fromQuery)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.FireStateChanged(EntityState oldState)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey, Nullable`1 fallbackState)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode`1 node)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode`1 node, Func`2 handleNode)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.AttachGraph(InternalEntityEntry rootEntry, EntityState targetState, EntityState storeGeneratedWithKeySetTargetState, Boolean forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.NavigationFixer.NavigationCollectionChanged(InternalEntityEntry entry, INavigationBase navigationBase, IEnumerable`1 added, IEnumerable`1 removed)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntryNotifier.NavigationCollectionChanged(InternalEntityEntry entry, INavigationBase navigationBase, IEnumerable`1 added, IEnumerable`1 removed)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.DetectNavigationChange(InternalEntityEntry entry, INavigationBase navigationBase)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.LocalDetectChanges(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.ChangeDetector.DetectChanges(IStateManager stateManager)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.DetectChanges()
+   at Microsoft.EntityFrameworkCore.DbContext.TryDetectChanges()
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Ardalis.Specification.EntityFrameworkCore.RepositoryBase`1.SaveChangesAsync(CancellationToken cancellationToken)
+   at OrderDemo.CleanArch.UseCases.Cart.AddToCart.AddToCartHandler.Handle(AddToCartCommand request, CancellationToken cancellationToken) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.UseCases\Cart\AddToCart\AddToCartHandler.cs:line 45
+   at OrderDemo.CleanArch.Web.Cart.AddToCart.ExecuteAsync(AddToCartRequest request, CancellationToken ct) in C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web\Cart\AddToCart.cs:line 62
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-10-19 22:43:21.716 +01:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/cart - 500 null text/plain; charset=utf-8 127.0895ms

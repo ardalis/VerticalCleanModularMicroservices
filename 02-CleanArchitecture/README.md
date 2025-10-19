@@ -1,4 +1,4 @@
-[![.NET Core](https://github.com/ardalis/CleanArchitecture/workflows/.NET%20Core/badge.svg)](https://github.com/ardalis/CleanArchitecture/actions)
+﻿[![.NET Core](https://github.com/ardalis/CleanArchitecture/workflows/.NET%20Core/badge.svg)](https://github.com/ardalis/CleanArchitecture/actions)
 [![publish Ardalis.CleanArchitecture Template to nuget](https://github.com/ardalis/CleanArchitecture/actions/workflows/publish.yml/badge.svg)](https://github.com/ardalis/CleanArchitecture/actions/workflows/publish.yml)
 [![Ardalis.CleanArchitecture.Template on NuGet](https://img.shields.io/nuget/v/Ardalis.CleanArchitecture.Template?label=Ardalis.CleanArchitecture.Template)](https://www.nuget.org/packages/Ardalis.CleanArchitecture.Template/)
 
@@ -199,6 +199,152 @@ You should **clone this repository** if you're one of the contributors and you h
 
 ## Running Migrations
 
+This project uses **automatic migration application** on startup, eliminating the need for manual migration commands in most cases.
+
+### Automatic Migration Application
+
+Migrations are automatically applied when the application starts via `MigrateAsync()` in `MiddlewareConfig.cs`. This means:
+
+✅ **No manual `dotnet ef database update` needed**
+✅ **Works in all environments** (Development, Staging, Production)
+✅ **Database always matches code** - Pull latest code, run app, migrations apply automatically
+✅ **Team-friendly** - Everyone gets database updates automatically
+
+### Database Recreation (Development Only)
+
+Control database behavior in development via `appsettings.Development.json`:
+
+```json
+{
+  "DatabaseOptions": {
+    "RecreateOnStartup": true  // Drop & recreate database on each run
+  }
+}
+```
+
+**Options:**
+
+- **`true`** (default for development) - Fresh database every run
+  - Perfect for rapid development and testing
+  - Always starts with clean seed data
+  - No stale data or migration conflicts
+  - Database is dropped, recreated, and reseeded on each startup
+
+- **`false`** - Preserve existing data between runs
+  - Only applies new migrations
+  - Keeps existing data
+  - Seed data only added if tables are empty
+
+⚠️ **Important:** Database is NEVER dropped in non-Development environments, regardless of this setting.
+
+### Creating New Migrations
+
+When you modify the domain model (entities, value objects, configurations):
+
+```powershell
+dotnet ef migrations add YourMigrationName \
+  -c AppDbContext \
+  -p src/OrderDemo.CleanArch.Infrastructure/OrderDemo.CleanArch.Infrastructure.csproj \
+  -s src/OrderDemo.CleanArch.Web/OrderDemo.CleanArch.Web.csproj \
+  -o Data/Migrations
+```
+
+The migration is created but **not applied manually**. It will be applied automatically the next time the application starts.
+
+### Design-Time Connection Strings
+
+The `AppDbContextFactory` is used only for **creating** migrations (not applying them). It uses:
+
+1. Environment variable: `ConnectionStrings__AppDb` (if set)
+2. Falls back to: SQLite `design-time.db` (works fine for creating migration files)
+
+**Example (PowerShell):**
+```powershell
+# Optional: Set this if you want to create migrations against SQL Server
+$env:ConnectionStrings__AppDb = "Server=localhost,1433;Database=AppDb;User ID=sa;Password=Your`$tr0ngP@ss!;TrustServerCertificate=true"
+
+# Create migration
+dotnet ef migrations add YourMigrationName -c AppDbContext ...
+```
+
+**You don't need to set this** - the SQLite fallback works perfectly for creating migrations.
+
+### Connection String Sources
+
+**Runtime with .NET Aspire (Recommended):**
+- Aspire automatically injects `ConnectionStrings:AppDb`
+- Uses SQL Server in a Docker container
+- Zero configuration required
+- Start via `dotnet run` in the AspireHost project
+
+**Runtime Standalone (without Aspire):**
+- Uses `SqliteConnection` from `appsettings.json`
+- Local SQLite database for development
+- Good for quick testing without Docker
+
+**Design-Time (EF Core Tools):**
+- Environment variable: `ConnectionStrings__AppDb` (optional)
+- Fallback: SQLite `design-time.db`
+- Only used when creating migrations
+
+### Migration Workflow
+
+```mermaid
+graph LR
+    A[Modify Domain Model] --> B[Create Migration]
+    B -->|dotnet ef migrations add| C[Migration File Created]
+    C -->|Commit & Push| D[Team Pulls Changes]
+    D -->|Start Application| E[MigrateAsync Runs]
+    E -->|Automatic| F[Migrations Applied]
+    F --> G[Database Up-to-Date]
+```
+
+### Removing a Migration
+
+If you need to undo the last migration (before it's been applied):
+
+```powershell
+dotnet ef migrations remove \
+  -c AppDbContext \
+  -p src/OrderDemo.CleanArch.Infrastructure/OrderDemo.CleanArch.Infrastructure.csproj \
+  -s src/OrderDemo.CleanArch.Web/OrderDemo.CleanArch.Web.csproj
+```
+
+### .NET Aspire Setup
+
+This project uses .NET Aspire for local development orchestration:
+
+1. **Start Aspire:**
+   ```powershell
+   cd src/OrderDemo.CleanArch.AspireHost
+   dotnet run
+   ```
+
+2. **What Aspire Does:**
+   - Starts SQL Server container automatically
+   - Injects connection string to the Web API
+   - Provides dashboard at `http://localhost:15888`
+   - Manages service dependencies
+
+3. **Database is Ready:**
+   - SQL Server runs in Docker (no local install needed)
+   - Database created automatically
+   - Migrations applied automatically
+   - Seed data loaded automatically
+
+### Security Note
+
+🔒 **No passwords in source code** - All connection strings use:
+- Environment variables (runtime via Aspire)
+- Configuration sources (design-time via environment variables)
+- Never commit passwords to Git
+
+---
+
+## Original Migration Instructions (Legacy)
+
+The following instructions are from the original template. **You don't need these** with the automatic migration system, but they're preserved for reference.
+
 You shouldn't need to do this to use this template, but if you want migrations set up properly in the Infrastructure project, you need to specify that project name when you run the migrations command.
 
 In Visual Studio, open the Package Manager Console, and run `Add-Migration InitialMigrationName -StartupProject Your.ProjectName.Web -Context AppDbContext -Project Your.ProjectName.Infrastructure`.
@@ -210,6 +356,16 @@ dotnet ef migrations add MIGRATIONNAME -c AppDbContext -p ../Your.ProjectName.In
 ```
 
 To use SqlServer, change `options.UseSqlite(connectionString));` to `options.UseSqlServer(connectionString));` in the `Your.ProjectName.Infrastructure.StartupSetup` file. Also remember to replace the `SqliteConnection` with `DefaultConnection` in the `Your.ProjectName.Web.Program` file, which points to your Database Server.
+
+Always set the envrionment variable before creating migrations:
+
+```powershell
+# PowerShell
+$env:ConnectionStrings__AppDb = "Server=localhost,1433;Database=AppDb;User ID=sa;Password=Your`$tr0ngP@ss!;TrustServerCertificate=true"
+
+# Then create migration
+dotnet ef migrations add YourMigration ...
+```
 
 To update the database use this command from the Web project folder (replace `OrderDemo.CleanArch` with your project's name):
 
