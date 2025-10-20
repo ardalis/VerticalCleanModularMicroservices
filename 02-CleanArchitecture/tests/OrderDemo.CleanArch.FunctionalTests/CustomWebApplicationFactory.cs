@@ -42,7 +42,7 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
         //if (!db.ToDoItems.Any())
         //{
         // Seed the database with test data.
-        SeedData.PopulateTestDataAsync(db).Wait();
+        SeedData.PopulateTestDataAsync(db, logger).Wait();
         //}
       }
       catch (Exception ex)

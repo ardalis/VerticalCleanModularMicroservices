@@ -64,7 +64,7 @@ public static class MiddlewareConfig
       logger.LogInformation("Database migrations applied successfully.");
 
       // Seed data
-      await SeedData.InitializeAsync(context);
+      await SeedData.InitializeAsync(context, logger);
     }
     catch (Exception ex)
     {

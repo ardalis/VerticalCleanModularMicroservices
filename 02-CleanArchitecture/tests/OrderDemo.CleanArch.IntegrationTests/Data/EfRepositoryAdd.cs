@@ -1,25 +1,26 @@
-﻿using OrderDemo.CleanArch.Core.ContributorAggregate;
+﻿using OrderDemo.CleanArch.Core.ProductAggregate;
 
 namespace OrderDemo.CleanArch.IntegrationTests.Data;
 
 public class EfRepositoryAdd : BaseEfRepoTestFixture
 {
   [Fact]
-  public async Task AddsContributorAndSetsId()
+  public async Task AddsProductAndSetsId()
   {
-    var testContributorName = ContributorName.From("testContributor");
-    var testContributorStatus = ContributorStatus.NotSet;
+    var testProductId = ProductId.From(1);
+    var testProductName = "testProduct";
+    decimal testProductUnitPrice = 10m;
     var repository = GetRepository();
-    var Contributor = new Contributor(testContributorName);
+    var Product = new Product(testProductId, testProductName, testProductUnitPrice);
 
-    await repository.AddAsync(Contributor);
+    await repository.AddAsync(Product);
 
-    var newContributor = (await repository.ListAsync())
+    var newProduct = (await repository.ListAsync())
                     .FirstOrDefault();
 
-    newContributor.ShouldNotBeNull();
-    testContributorName.ShouldBe(newContributor.Name);
-    testContributorStatus.ShouldBe(newContributor.Status);
-    newContributor.Id.Value.ShouldBeGreaterThan(0);
+    newProduct.ShouldNotBeNull();
+    testProductName.ShouldBe(newProduct.Name);
+    testProductUnitPrice.ShouldBe(newProduct.UnitPrice);
+    newProduct.Id.Value.ShouldBeGreaterThan(0);
   }
 }

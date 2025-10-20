@@ -7,7 +7,7 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
   public void Configure(EntityTypeBuilder<Product> builder)
   {
     builder.Property(entity => entity.Id)
-      .HasValueGenerator<VogenIdValueGenerator<AppDbContext, Product, ProductId>>()
+      .HasValueGenerator<VogenIntIdValueGenerator<AppDbContext, Product, ProductId>>()
       .HasVogenConversion()
       .IsRequired();
 

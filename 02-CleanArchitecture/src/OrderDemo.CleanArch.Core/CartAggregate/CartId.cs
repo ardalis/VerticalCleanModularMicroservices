@@ -2,9 +2,11 @@
 
 namespace OrderDemo.CleanArch.Core.CartAggregate;
 
-[ValueObject<int>]
+[ValueObject<Guid>]
 public readonly partial struct CartId
 {
-  private static Validation Validate(int value)
-      => value > 0 ? Validation.Ok : Validation.Invalid("CartId must be positive.");
+  private static Validation Validate(Guid value)
+      => value != Guid.Empty ? Validation.Ok : Validation.Invalid("CartId must set to non-default value.");
 }
+[ValueObject<int>]
+public readonly partial struct TestId { }

@@ -6,9 +6,8 @@ public class CartConfiguration : IEntityTypeConfiguration<Cart>
 {
   public void Configure(EntityTypeBuilder<Cart> builder)
   {
-    // Store Id as Guid in database, convert to/from CartId in application
     builder.Property(entity => entity.Id)
-      .HasValueGenerator<VogenIdValueGenerator<AppDbContext, Cart, CartId>>()
+      .HasValueGenerator<VogenGuidIdValueGenerator<AppDbContext, Cart, CartId>>()
       .HasVogenConversion()
       .IsRequired();
 
@@ -18,7 +17,7 @@ public class CartConfiguration : IEntityTypeConfiguration<Cart>
     builder.Property(entity => entity.Deleted)
       .IsRequired();
 
-    // Simple relationship - EF will handle the foreign key
+    // CartItems relationship
     builder.HasMany(c => c.Items);
   }
 }

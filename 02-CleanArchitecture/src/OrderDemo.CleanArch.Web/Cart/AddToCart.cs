@@ -30,7 +30,7 @@ public class AddToCart(IMediator mediator)
         Quantity = 2 
       };
       s.ResponseExamples[200] = new CartResponse(
-        123,
+        Guid.Empty,
         new List<CartItemResponse>
         {
           new(1, 2, 999.99m, 1999.98m)

@@ -1,4 +1,4 @@
-﻿using OrderDemo.CleanArch.Core.ContributorAggregate;
+﻿using OrderDemo.CleanArch.Core.ProductAggregate;
 using OrderDemo.CleanArch.Infrastructure.Data;
 
 namespace OrderDemo.CleanArch.IntegrationTests.Data;
@@ -36,8 +36,8 @@ public abstract class BaseEfRepoTestFixture
     return builder.Options;
   }
 
-  protected EfRepository<Contributor> GetRepository()
+  protected EfRepository<Product> GetRepository()
   {
-    return new EfRepository<Contributor>(_dbContext);
+    return new EfRepository<Product>(_dbContext);
   }
 }

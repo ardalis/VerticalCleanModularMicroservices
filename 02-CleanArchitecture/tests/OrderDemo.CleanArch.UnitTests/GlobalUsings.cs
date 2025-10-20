@@ -1,7 +1,5 @@
 ﻿global using System.Runtime.CompilerServices;
 global using Ardalis.SharedKernel;
-global using OrderDemo.CleanArch.Core.ContributorAggregate;
-global using OrderDemo.CleanArch.UseCases.Contributors.Create;
 global using Shouldly;
 global using Mediator;
 global using Microsoft.Extensions.Logging;

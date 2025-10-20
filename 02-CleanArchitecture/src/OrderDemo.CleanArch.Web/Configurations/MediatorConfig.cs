@@ -1,7 +1,7 @@
 ﻿using Ardalis.SharedKernel;
-using OrderDemo.CleanArch.Core.ContributorAggregate;
+using OrderDemo.CleanArch.Core.ProductAggregate;
 using OrderDemo.CleanArch.Infrastructure;
-using OrderDemo.CleanArch.UseCases.Contributors.Create;
+using OrderDemo.CleanArch.UseCases.Products.Get;
 
 namespace OrderDemo.CleanArch.Web.Configurations;
 
@@ -20,8 +20,8 @@ public static class MediatorConfig
       // Supply any TYPE from each assembly you want scanned (the generator finds the assembly from the type)
       options.Assemblies =
       [
-        typeof(Contributor),                       // Core
-        typeof(CreateContributorCommand),         // UseCases
+        typeof(Product),                           // Core
+        typeof(GetProductQuery),                  // UseCases
         typeof(InfrastructureServiceExtensions), // Infrastructure
         typeof(MediatorConfig)                  // Web
       ];

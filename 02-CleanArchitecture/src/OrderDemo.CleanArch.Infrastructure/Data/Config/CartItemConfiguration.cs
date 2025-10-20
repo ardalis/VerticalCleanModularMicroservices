@@ -7,12 +7,10 @@ public class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
   public void Configure(EntityTypeBuilder<CartItem> builder)
   {
     builder.ToTable("CartItems");
-    
-    builder.HasKey(ci => ci.Id);
-    
-    // Use SQL Server IDENTITY for auto-increment int ID
-    builder.Property(ci => ci.Id)
-      .ValueGeneratedOnAdd()
+
+    builder.Property(entity => entity.Id)
+      .HasValueGenerator<VogenGuidIdValueGenerator<AppDbContext, Cart, CartId>>()
+      .HasVogenConversion()
       .IsRequired();
         
     builder.Property(ci => ci.ProductId)
