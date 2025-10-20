@@ -416,3 +416,8 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+/02-CleanArchitecture/src/OrderDemo.CleanArch.Web/database.sqlite
+/02-CleanArchitecture/src/OrderDemo.CleanArch.Web/database.sqlite-shm
+/02-CleanArchitecture/src/OrderDemo.CleanArch.Web/database.sqlite-wal
+/02-CleanArchitecture/src/OrderDemo.CleanArch.Web/log20251020.txt
+/02-CleanArchitecture/src/OrderDemo.CleanArch.Web/log20251020_001.txt

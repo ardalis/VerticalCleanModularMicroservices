@@ -17,29 +17,13 @@ namespace OrderDemo.CleanArch.Infrastructure.Data.Migrations
                 name: "Carts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Deleted = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Carts", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Contributors",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    PhoneNumber_CountryCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber_Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PhoneNumber_Extension = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Contributors", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,12 +43,11 @@ namespace OrderDemo.CleanArch.Infrastructure.Data.Migrations
                 name: "CartItems",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     UnitPrice = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
-                    CartId = table.Column<int>(type: "int", nullable: true)
+                    CartId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -97,9 +80,6 @@ namespace OrderDemo.CleanArch.Infrastructure.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "CartItems");
-
-            migrationBuilder.DropTable(
-                name: "Contributors");
 
             migrationBuilder.DropTable(
                 name: "Products");

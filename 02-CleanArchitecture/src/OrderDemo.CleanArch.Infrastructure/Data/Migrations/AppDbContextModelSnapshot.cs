@@ -24,8 +24,8 @@ namespace OrderDemo.CleanArch.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("OrderDemo.CleanArch.Core.CartAggregate.Cart", b =>
                 {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
@@ -40,14 +40,11 @@ namespace OrderDemo.CleanArch.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("OrderDemo.CleanArch.Core.CartAggregate.CartItem", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int?>("CartId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("CartId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -64,24 +61,6 @@ namespace OrderDemo.CleanArch.Infrastructure.Data.Migrations
                     b.HasIndex("CartId");
 
                     b.ToTable("CartItems", (string)null);
-                });
-
-            modelBuilder.Entity("OrderDemo.CleanArch.Core.ContributorAggregate.Contributor", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Contributors");
                 });
 
             modelBuilder.Entity("OrderDemo.CleanArch.Core.ProductAggregate.Product", b =>
@@ -128,35 +107,6 @@ namespace OrderDemo.CleanArch.Infrastructure.Data.Migrations
                     b.HasOne("OrderDemo.CleanArch.Core.CartAggregate.Cart", null)
                         .WithMany("Items")
                         .HasForeignKey("CartId");
-                });
-
-            modelBuilder.Entity("OrderDemo.CleanArch.Core.ContributorAggregate.Contributor", b =>
-                {
-                    b.OwnsOne("OrderDemo.CleanArch.Core.ContributorAggregate.PhoneNumber", "PhoneNumber", b1 =>
-                        {
-                            b1.Property<int>("ContributorId")
-                                .HasColumnType("int");
-
-                            b1.Property<string>("CountryCode")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Extension")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.Property<string>("Number")
-                                .IsRequired()
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("ContributorId");
-
-                            b1.ToTable("Contributors");
-
-                            b1.WithOwner()
-                                .HasForeignKey("ContributorId");
-                        });
-
-                    b.Navigation("PhoneNumber");
                 });
 
             modelBuilder.Entity("OrderDemo.CleanArch.Core.CartAggregate.Cart", b =>

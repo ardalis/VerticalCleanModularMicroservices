@@ -9,7 +9,7 @@ public class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
     builder.ToTable("CartItems");
 
     builder.Property(entity => entity.Id)
-      .HasValueGenerator<VogenGuidIdValueGenerator<AppDbContext, Cart, CartId>>()
+      .HasValueGenerator<VogenGuidIdValueGenerator<AppDbContext, CartItem, CartItemId>>()
       .HasVogenConversion()
       .IsRequired();
         

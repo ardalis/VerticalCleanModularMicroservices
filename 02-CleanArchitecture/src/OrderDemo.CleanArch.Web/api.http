@@ -1,6 +1,6 @@
 @OrderDemo.Api_HostAddress = https://localhost:57679
 
-@OrderDemo.CartId = 1
+@OrderDemo.CartId = a8e75b95-9e5f-4b7d-9439-aaf06aa66daa
 @OrderDemo.OrderId = ec5a03fe-fc8c-4659-9fc7-f46351e9bf6f
 
 ### List Products
