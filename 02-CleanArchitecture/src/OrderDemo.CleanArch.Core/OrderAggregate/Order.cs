@@ -1,4 +1,6 @@
-﻿namespace OrderDemo.CleanArch.Core.OrderAggregate;
+﻿using OrderDemo.CleanArch.Core.ProductAggregate;
+
+namespace OrderDemo.CleanArch.Core.OrderAggregate;
 
 public class Order : EntityBase<Order, OrderId>, IAggregateRoot
 {
@@ -16,7 +18,7 @@ public class Order : EntityBase<Order, OrderId>, IAggregateRoot
   public string PaymentReference { get; private set; } = string.Empty;
   public IReadOnlyList<OrderItem> Items => _items.AsReadOnly();
 
-  public decimal Total => _items.Sum(i => i.UnitPrice * i.Quantity);
+  public decimal Total => _items.Sum(i => i.UnitPrice.Value * i.Quantity.Value);
 
   public void AddItem(ProductId productId, Quantity quantity, Price unitPrice)
   {

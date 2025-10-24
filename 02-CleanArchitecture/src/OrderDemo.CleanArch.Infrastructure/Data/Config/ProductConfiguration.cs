@@ -22,16 +22,16 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
     builder.HasData(
       new Product(
         ProductId.From(1),
-        "Laptop",
-        999.99m),
+        "Coffee Mug",
+        9.99m),
       new Product(
         ProductId.From(2),
-        "Smartphone",
-        499.99m),
+        "T-Shirt",
+        19.99m),
       new Product(
         ProductId.From(3),
-        "Tablet",
-        299.99m)
+        "Sticker Pack",
+        3.99m)
     );
   }
 }

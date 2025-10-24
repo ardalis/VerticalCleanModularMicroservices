@@ -14,7 +14,7 @@ namespace OrderDemo.CleanArch.Infrastructure.Data;
 /// PowerShell: $env:ConnectionStrings__AppDb = "Server=localhost,1433;Database=AppDb;User ID=sa;Password=YourPassword;TrustServerCertificate=true"
 /// Bash: export ConnectionStrings__AppDb="Server=localhost,1433;Database=AppDb;User ID=sa;Password=YourPassword;TrustServerCertificate=true"
 /// 
-/// Or just use the SQLite fallback for local migration creation.
+/// Always uses SQL Server for migrations.
 /// </summary>
 public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
 {
@@ -24,17 +24,9 @@ public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
 
     // Try to get connection string from environment variable (ASP.NET Core format)
     var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__AppDb")
-                          ?? "Data Source=design-time.db"; // Fallback to SQLite for design-time
+                          ?? "Server=localhost,1433;Database=AppDb_Design;User ID=sa;Password=Your$tr0ngP@ss!;TrustServerCertificate=true"; // Default SQL Server connection for design-time
 
-    // Determine which provider to use based on the connection string
-    if (connectionString.Contains("Server=", StringComparison.OrdinalIgnoreCase))
-    {
-      optionsBuilder.UseSqlServer(connectionString);
-    }
-    else
-    {
-      optionsBuilder.UseSqlite(connectionString);
-    }
+    optionsBuilder.UseSqlServer(connectionString);
 
     return new AppDbContext(optionsBuilder.Options);
   }

@@ -1,4 +1,6 @@
 ﻿
+using OrderDemo.CleanArch.Core.ProductAggregate;
+
 namespace OrderDemo.CleanArch.Core.OrderAggregate;
 
 public class OrderItem(OrderId orderId, ProductId productId, Quantity quantity, Price unitPrice)

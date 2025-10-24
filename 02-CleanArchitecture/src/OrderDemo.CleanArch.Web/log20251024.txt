@@ -1,0 +1,243 @@
+2025-10-24 23:56:50.711 +01:00 [INF] Registered 3 endpoints in 1,525 milliseconds.
+2025-10-24 23:56:51.251 +01:00 [WRN] DROPPING database for fresh start (DatabaseOptions:RecreateOnStartup = true)...
+2025-10-24 23:56:52.005 +01:00 [INF] Executed DbCommand (25ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-24 23:56:55.098 +01:00 [INF] Executed DbCommand (3,014ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [AppDb] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+END;
+2025-10-24 23:56:55.153 +01:00 [INF] Executed DbCommand (54ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+DROP DATABASE [AppDb];
+2025-10-24 23:56:55.156 +01:00 [INF] Database dropped.
+2025-10-24 23:56:55.157 +01:00 [INF] Applying database migrations...
+2025-10-24 23:56:55.578 +01:00 [INF] Executed DbCommand (303ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [AppDb];
+2025-10-24 23:56:55.748 +01:00 [INF] Executed DbCommand (170ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [AppDb] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2025-10-24 23:56:55.804 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-24 23:56:55.808 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-10-24 23:56:55.833 +01:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-10-24 23:56:55.908 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-10-24 23:56:55.936 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-24 23:56:55.939 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-10-24 23:56:55.987 +01:00 [INF] Executed DbCommand (45ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-10-24 23:56:56.003 +01:00 [INF] Applying migration '20251020223304_Initial'.
+2025-10-24 23:56:56.054 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Carts] (
+    [Id] uniqueidentifier NOT NULL,
+    [CreatedOn] datetime2 NOT NULL,
+    [Deleted] bit NOT NULL,
+    CONSTRAINT [PK_Carts] PRIMARY KEY ([Id])
+);
+2025-10-24 23:56:56.056 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Products] (
+    [Id] int NOT NULL,
+    [Name] nvarchar(100) NOT NULL,
+    [UnitPrice] decimal(18,2) NOT NULL,
+    CONSTRAINT [PK_Products] PRIMARY KEY ([Id])
+);
+2025-10-24 23:56:56.059 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CartItems] (
+    [Id] uniqueidentifier NOT NULL,
+    [ProductId] int NOT NULL,
+    [Quantity] int NOT NULL,
+    [UnitPrice] decimal(18,2) NOT NULL,
+    [CartId] uniqueidentifier NULL,
+    CONSTRAINT [PK_CartItems] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_CartItems_Carts_CartId] FOREIGN KEY ([CartId]) REFERENCES [Carts] ([Id])
+);
+2025-10-24 23:56:56.126 +01:00 [INF] Executed DbCommand (67ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Name', N'UnitPrice') AND [object_id] = OBJECT_ID(N'[Products]'))
+    SET IDENTITY_INSERT [Products] ON;
+INSERT INTO [Products] ([Id], [Name], [UnitPrice])
+VALUES (1, N'Laptop', 999.99),
+(2, N'Smartphone', 499.99),
+(3, N'Tablet', 299.99);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Name', N'UnitPrice') AND [object_id] = OBJECT_ID(N'[Products]'))
+    SET IDENTITY_INSERT [Products] OFF;
+2025-10-24 23:56:56.128 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CartItems_CartId] ON [CartItems] ([CartId]);
+2025-10-24 23:56:56.131 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20251020223304_Initial', N'9.0.10');
+2025-10-24 23:56:56.145 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2025-10-24 23:56:56.146 +01:00 [INF] Database migrations applied successfully.
+2025-10-24 23:56:56.312 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-10-24 23:56:56.314 +01:00 [INF] DB has data - seeding not required.
+2025-10-24 23:56:56.516 +01:00 [INF] Now listening on: https://localhost:51239
+2025-10-24 23:56:56.519 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-24 23:56:56.565 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-24 23:56:56.565 +01:00 [INF] Hosting environment: Development
+2025-10-24 23:56:56.565 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\02-CleanArchitecture\src\OrderDemo.CleanArch.Web
+2025-10-24 23:57:32.088 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products - null null
+2025-10-24 23:57:32.109 +01:00 [INF] Executing endpoint 'HTTP: GET /Products'
+2025-10-24 23:57:32.196 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[UnitPrice]
+FROM [Products] AS [p]
+ORDER BY [p].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-10-24 23:57:32.221 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+2025-10-24 23:57:32.232 +01:00 [INF] Executed endpoint 'HTTP: GET /Products'
+2025-10-24 23:57:32.234 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products - 200 null application/json; charset=utf-8 152.1815ms
+2025-10-24 23:57:37.524 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products/1 - null null
+2025-10-24 23:57:37.526 +01:00 [INF] Executing endpoint 'HTTP: GET /Products/{ProductId}'
+2025-10-24 23:57:37.624 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[@__productId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Name], [p].[UnitPrice]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__productId_0
+2025-10-24 23:57:37.645 +01:00 [INF] Setting HTTP status code 200.
+2025-10-24 23:57:37.646 +01:00 [INF] Writing value of type 'ProductRecord' as Json.
+2025-10-24 23:57:37.647 +01:00 [INF] Executed endpoint 'HTTP: GET /Products/{ProductId}'
+2025-10-24 23:57:37.647 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products/1 - 200 null application/json; charset=utf-8 123.227ms
+2025-10-24 23:57:39.665 +01:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/cart - application/json 37
+2025-10-24 23:57:39.666 +01:00 [INF] Executing endpoint 'HTTP: POST /cart'
+2025-10-24 23:57:39.683 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[@__productId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Name], [p].[UnitPrice]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__productId_0
+2025-10-24 23:57:39.757 +01:00 [INF] Executed DbCommand (11ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Carts] ([Id], [CreatedOn], [Deleted])
+VALUES (@p0, @p1, @p2);
+2025-10-24 23:57:39.809 +01:00 [INF] Executed DbCommand (12ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p7='?' (DbType = Guid), @p5='?' (DbType = DateTime2), @p6='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [CartItems] ([Id], [CartId], [ProductId], [Quantity], [UnitPrice])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+UPDATE [Carts] SET [CreatedOn] = @p5, [Deleted] = @p6
+OUTPUT 1
+WHERE [Id] = @p7;
+2025-10-24 23:57:39.823 +01:00 [INF] Setting HTTP status code 200.
+2025-10-24 23:57:39.826 +01:00 [INF] Writing value of type 'CartResponse' as Json.
+2025-10-24 23:57:39.827 +01:00 [INF] Executed endpoint 'HTTP: POST /cart'
+2025-10-24 23:57:39.827 +01:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/cart - 200 null application/json; charset=utf-8 162.0116ms
+2025-10-24 23:57:44.584 +01:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/cart - application/json 89
+2025-10-24 23:57:44.585 +01:00 [INF] Executing endpoint 'HTTP: POST /cart'
+2025-10-24 23:57:44.589 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__productId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Name], [p].[UnitPrice]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__productId_0
+2025-10-24 23:57:44.653 +01:00 [INF] Executed DbCommand (13ms) [Parameters=[@__cartId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[Id], [c1].[CreatedOn], [c1].[Deleted], [c0].[Id], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice]
+FROM (
+    SELECT TOP(1) [c].[Id], [c].[CreatedOn], [c].[Deleted]
+    FROM [Carts] AS [c]
+    WHERE [c].[Id] = @__cartId_0 AND [c].[Deleted] = CAST(0 AS bit)
+) AS [c1]
+LEFT JOIN [CartItems] AS [c0] ON [c1].[Id] = [c0].[CartId]
+ORDER BY [c1].[Id]
+2025-10-24 23:57:44.654 +01:00 [INF] Setting HTTP status code 404.
+2025-10-24 23:57:44.654 +01:00 [INF] Executed endpoint 'HTTP: POST /cart'
+2025-10-24 23:57:44.654 +01:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/cart - 404 0 null 70.3131ms
+2025-10-24 23:58:02.844 +01:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/cart - application/json 37
+2025-10-24 23:58:02.844 +01:00 [INF] Executing endpoint 'HTTP: POST /cart'
+2025-10-24 23:58:02.850 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__productId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Name], [p].[UnitPrice]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__productId_0
+2025-10-24 23:58:02.859 +01:00 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Carts] ([Id], [CreatedOn], [Deleted])
+VALUES (@p0, @p1, @p2);
+2025-10-24 23:58:02.864 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p7='?' (DbType = Guid), @p5='?' (DbType = DateTime2), @p6='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [CartItems] ([Id], [CartId], [ProductId], [Quantity], [UnitPrice])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+UPDATE [Carts] SET [CreatedOn] = @p5, [Deleted] = @p6
+OUTPUT 1
+WHERE [Id] = @p7;
+2025-10-24 23:58:02.871 +01:00 [INF] Setting HTTP status code 200.
+2025-10-24 23:58:02.871 +01:00 [INF] Writing value of type 'CartResponse' as Json.
+2025-10-24 23:58:02.871 +01:00 [INF] Executed endpoint 'HTTP: POST /cart'
+2025-10-24 23:58:02.872 +01:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/cart - 200 null application/json; charset=utf-8 27.9883ms
+2025-10-24 23:58:19.162 +01:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/cart - application/json 89
+2025-10-24 23:58:19.162 +01:00 [INF] Executing endpoint 'HTTP: POST /cart'
+2025-10-24 23:58:19.166 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__productId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Name], [p].[UnitPrice]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__productId_0
+2025-10-24 23:58:19.168 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__cartId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[Id], [c1].[CreatedOn], [c1].[Deleted], [c0].[Id], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice]
+FROM (
+    SELECT TOP(1) [c].[Id], [c].[CreatedOn], [c].[Deleted]
+    FROM [Carts] AS [c]
+    WHERE [c].[Id] = @__cartId_0 AND [c].[Deleted] = CAST(0 AS bit)
+) AS [c1]
+LEFT JOIN [CartItems] AS [c0] ON [c1].[Id] = [c0].[CartId]
+ORDER BY [c1].[Id]
+2025-10-24 23:58:19.182 +01:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p7='?' (DbType = Guid), @p5='?' (DbType = DateTime2), @p6='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [CartItems] ([Id], [CartId], [ProductId], [Quantity], [UnitPrice])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+UPDATE [Carts] SET [CreatedOn] = @p5, [Deleted] = @p6
+OUTPUT 1
+WHERE [Id] = @p7;
+2025-10-24 23:58:19.189 +01:00 [INF] Setting HTTP status code 200.
+2025-10-24 23:58:19.189 +01:00 [INF] Writing value of type 'CartResponse' as Json.
+2025-10-24 23:58:19.190 +01:00 [INF] Executed endpoint 'HTTP: POST /cart'
+2025-10-24 23:58:19.190 +01:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/cart - 200 null application/json; charset=utf-8 28.0173ms
+2025-10-24 23:58:23.290 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/cart/a69c0d1f-fb45-4cdd-9fa9-4c3033a7aab2 - null null
+2025-10-24 23:58:23.291 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/cart/a69c0d1f-fb45-4cdd-9fa9-4c3033a7aab2 - 404 0 null 0.6696ms
+2025-10-24 23:58:23.291 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/cart/a69c0d1f-fb45-4cdd-9fa9-4c3033a7aab2, Response status code: 404
+2025-10-24 23:58:45.118 +01:00 [INF] Request starting HTTP/1.1 POST https://localhost:57679/cart - application/json 89
+2025-10-24 23:58:45.119 +01:00 [INF] Executing endpoint 'HTTP: POST /cart'
+2025-10-24 23:58:45.122 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__productId_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Name], [p].[UnitPrice]
+FROM [Products] AS [p]
+WHERE [p].[Id] = @__productId_0
+2025-10-24 23:58:45.125 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@__cartId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [c1].[Id], [c1].[CreatedOn], [c1].[Deleted], [c0].[Id], [c0].[CartId], [c0].[ProductId], [c0].[Quantity], [c0].[UnitPrice]
+FROM (
+    SELECT TOP(1) [c].[Id], [c].[CreatedOn], [c].[Deleted]
+    FROM [Carts] AS [c]
+    WHERE [c].[Id] = @__cartId_0 AND [c].[Deleted] = CAST(0 AS bit)
+) AS [c1]
+LEFT JOIN [CartItems] AS [c0] ON [c1].[Id] = [c0].[CartId]
+ORDER BY [c1].[Id]
+2025-10-24 23:58:45.131 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (Precision = 18) (Scale = 2) (DbType = Decimal), @p7='?' (DbType = Guid), @p5='?' (DbType = DateTime2), @p6='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [CartItems] ([Id], [CartId], [ProductId], [Quantity], [UnitPrice])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+UPDATE [Carts] SET [CreatedOn] = @p5, [Deleted] = @p6
+OUTPUT 1
+WHERE [Id] = @p7;
+2025-10-24 23:58:45.148 +01:00 [INF] Setting HTTP status code 200.
+2025-10-24 23:58:45.149 +01:00 [INF] Writing value of type 'CartResponse' as Json.
+2025-10-24 23:58:45.149 +01:00 [INF] Executed endpoint 'HTTP: POST /cart'
+2025-10-24 23:58:45.149 +01:00 [INF] Request finished HTTP/1.1 POST https://localhost:57679/cart - 200 null application/json; charset=utf-8 30.4664ms
+2025-10-24 23:58:50.699 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/cart/a69c0d1f-fb45-4cdd-9fa9-4c3033a7aab2 - null null
+2025-10-24 23:58:50.699 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/cart/a69c0d1f-fb45-4cdd-9fa9-4c3033a7aab2 - 404 0 null 0.3656ms
+2025-10-24 23:58:50.699 +01:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/cart/a69c0d1f-fb45-4cdd-9fa9-4c3033a7aab2, Response status code: 404

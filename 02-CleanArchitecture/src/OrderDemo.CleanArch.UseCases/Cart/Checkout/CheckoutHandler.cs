@@ -1,4 +1,4 @@
-using OrderDemo.CleanArch.Core.CartAggregate;
+﻿using OrderDemo.CleanArch.Core.CartAggregate;
 using OrderDemo.CleanArch.Core.CartAggregate.Specifications;
 using OrderDemo.CleanArch.Core.GuestUserAggregate;
 using OrderDemo.CleanArch.Core.GuestUserAggregate.Specifications;
@@ -19,23 +19,17 @@ public class CheckoutHandler(
     var cartSpec = new CartByIdSpec(request.CartId);
     var cart = await cartRepository.FirstOrDefaultAsync(cartSpec, cancellationToken);
     
-    if (cart == null)
-    {
-      return Result.NotFound("Cart not found");
-    }
-
-    if (!cart.Items.Any())
-    {
-      return Result.Invalid("Cart is empty");
-    }
+    if (cart == null) return Result.NotFound("Cart not found");
+    if (!cart.Items.Any()) return Result.Invalid(new ValidationError("Cart is empty"));
 
     // Get or create guest user
-    var guestUserSpec = new GuestUserByIdSpec(request.GuestUserId);
+    var guestUserSpec = new GuestUserByEmailSpec(request.Email);
     var guestUser = await guestUserRepository.FirstOrDefaultAsync(guestUserSpec, cancellationToken);
     
     if (guestUser == null)
     {
-      guestUser = new GuestUser(request.GuestUserId, "guest@example.com");
+      var guestUserId = GuestUserId.From(Guid.NewGuid());
+      guestUser = new GuestUser(guestUserId, request.Email);
       guestUser = await guestUserRepository.AddAsync(guestUser, cancellationToken);
     }
 
@@ -52,13 +46,11 @@ public class CheckoutHandler(
         Price.From(cartItem.UnitPrice));
     }
 
-    // Save the order
     await orderRepository.AddAsync(order, cancellationToken);
 
-    // Mark cart as deleted
     cart.MarkAsDeleted();
     await cartRepository.UpdateAsync(cart, cancellationToken);
 
-    return new CheckoutResult("Checkout successful", order.Id);
+    return new CheckoutResult(order.Id);
   }
 }
