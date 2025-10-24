@@ -18,7 +18,7 @@ public class Order : EntityBase<Order, OrderId>, IAggregateRoot
 
   public decimal Total => _items.Sum(i => i.UnitPrice * i.Quantity);
 
-  public void AddItem(int productId, int quantity, decimal unitPrice)
+  public void AddItem(ProductId productId, Quantity quantity, Price unitPrice)
   {
     var item = new OrderItem(Id, productId, quantity, unitPrice);
 

@@ -10,4 +10,6 @@ namespace OrderDemo.CleanArch.Infrastructure.Data.Config;
 [EfCoreConverter<CartItemId>]
 [EfCoreConverter<OrderId>]
 [EfCoreConverter<OrderItemId>]
+[EfCoreConverter<Quantity>]
+[EfCoreConverter<Price>]
 internal partial class VogenEfCoreConverters;
