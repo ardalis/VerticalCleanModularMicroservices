@@ -1,0 +1,50 @@
+# ASP.NET Core Identity API Testing
+
+This file demonstrates how to test the Identity endpoints provided by the Users module.
+
+## Register a new user
+
+POST https://localhost:7299/register
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "Test123!"
+}
+
+### 
+
+## Login
+
+POST https://localhost:7299/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com", 
+  "password": "Test123!"
+}
+
+### 
+
+## Get user profile (requires authentication)
+# Copy the accessToken from the login response and use it in the Authorization header
+
+GET https://localhost:7299/api/users/profile
+Authorization: Bearer {{accessToken}}
+
+###
+
+## Get all users (requires authentication)  
+# Copy the accessToken from the login response and use it in the Authorization header
+
+GET https://localhost:7299/api/users
+Authorization: Bearer {{accessToken}}
+
+###
+
+## Logout
+
+POST https://localhost:7299/logout
+Content-Type: application/json
+
+###
