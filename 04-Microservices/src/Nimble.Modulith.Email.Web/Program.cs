@@ -1,6 +1,3 @@
-using FastEndpoints;
-using FastEndpoints.Security;
-using FastEndpoints.Swagger;
 using MassTransit;
 using Mediator;
 using Nimble.Modulith.Email;
@@ -20,10 +17,12 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 
 // Add Mediator with source generation
-builder.Services.AddMediator(options =>
-{
-    options.ServiceLifetime = ServiceLifetime.Scoped;
-});
+// use assembly:
+// [assembly: Mediator.MediatorOptions(ServiceLifetime = ServiceLifetime.Scoped)]
+//builder.Services.AddMediator(options =>
+//{
+//    options.ServiceLifetime = ServiceLifetime.Scoped;
+//});
 
 // Add logging behavior to Mediator pipeline
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
@@ -42,13 +41,13 @@ builder.Services.AddMassTransit(x =>
 });
 
 // Add FastEndpoints with JWT Bearer Authentication and Authorization
-builder.Services.AddFastEndpoints()
-    .AddAuthenticationJwtBearer(s =>
-    {
-        s.SigningKey = builder.Configuration["Auth:JwtSecret"];
-    })
-    .AddAuthorization()
-    .SwaggerDocument();
+//builder.Services.AddFastEndpoints()
+//    .AddAuthenticationJwtBearer(s =>
+//    {
+//        s.SigningKey = builder.Configuration["Auth:JwtSecret"];
+//    })
+//    .AddAuthorization()
+//    .SwaggerDocument();
 
 // Add Email module services
 builder.AddEmailModuleServices(logger);
@@ -67,7 +66,7 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseFastEndpoints()
-    .UseSwaggerGen();
+//app.UseFastEndpoints()
+//    .UseSwaggerGen();
 
 app.Run();
