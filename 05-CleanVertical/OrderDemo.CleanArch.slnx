@@ -1,0 +1,25 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="CleanArchitecture.nuspec" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/OrderDemo.CleanArch.AspireHost/OrderDemo.CleanArch.AspireHost.csproj" />
+    <Project Path="src/OrderDemo.CleanArch.ServiceDefaults/OrderDemo.CleanArch.ServiceDefaults.csproj" />
+    <Project Path="src/OrderDemo.CleanArch.Web/OrderDemo.CleanArch.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/OrderDemo.CleanArch.FunctionalTests/OrderDemo.CleanArch.FunctionalTests.csproj">
+      <BuildDependency Project="src/OrderDemo.CleanArch.Web/OrderDemo.CleanArch.Web.csproj" />
+    </Project>
+    <Project Path="tests/OrderDemo.CleanArch.IntegrationTests/OrderDemo.CleanArch.IntegrationTests.csproj" />
+    <Project Path="tests/OrderDemo.CleanArch.UnitTests/OrderDemo.CleanArch.UnitTests.csproj" />
+  </Folder>
+</Solution>

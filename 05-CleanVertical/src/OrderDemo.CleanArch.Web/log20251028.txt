@@ -1,0 +1,156 @@
+2025-10-28 16:51:10.207 +01:00 [INF] Registered 5 endpoints in 1,803 milliseconds.
+2025-10-28 16:51:10.809 +01:00 [WRN] DROPPING database for fresh start (DatabaseOptions:RecreateOnStartup = true)...
+2025-10-28 16:51:11.854 +01:00 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-28 16:51:15.030 +01:00 [INF] Executed DbCommand (3,047ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [AppDb] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+END;
+2025-10-28 16:51:15.096 +01:00 [INF] Executed DbCommand (65ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+DROP DATABASE [AppDb];
+2025-10-28 16:51:15.101 +01:00 [INF] Database dropped.
+2025-10-28 16:51:15.101 +01:00 [INF] Applying database migrations...
+2025-10-28 16:51:15.650 +01:00 [INF] Executed DbCommand (348ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [AppDb];
+2025-10-28 16:51:15.864 +01:00 [INF] Executed DbCommand (213ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [AppDb] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2025-10-28 16:51:15.926 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-28 16:51:15.929 +01:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-10-28 16:51:15.962 +01:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-10-28 16:51:16.027 +01:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-10-28 16:51:16.054 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-10-28 16:51:16.059 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-10-28 16:51:16.099 +01:00 [INF] Executed DbCommand (36ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-10-28 16:51:16.113 +01:00 [INF] Applying migration '20251020223304_Initial'.
+2025-10-28 16:51:16.151 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Carts] (
+    [Id] uniqueidentifier NOT NULL,
+    [CreatedOn] datetime2 NOT NULL,
+    [Deleted] bit NOT NULL,
+    CONSTRAINT [PK_Carts] PRIMARY KEY ([Id])
+);
+2025-10-28 16:51:16.156 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Products] (
+    [Id] int NOT NULL,
+    [Name] nvarchar(100) NOT NULL,
+    [UnitPrice] decimal(18,2) NOT NULL,
+    CONSTRAINT [PK_Products] PRIMARY KEY ([Id])
+);
+2025-10-28 16:51:16.160 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [CartItems] (
+    [Id] uniqueidentifier NOT NULL,
+    [ProductId] int NOT NULL,
+    [Quantity] int NOT NULL,
+    [UnitPrice] decimal(18,2) NOT NULL,
+    [CartId] uniqueidentifier NULL,
+    CONSTRAINT [PK_CartItems] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_CartItems_Carts_CartId] FOREIGN KEY ([CartId]) REFERENCES [Carts] ([Id])
+);
+2025-10-28 16:51:16.238 +01:00 [INF] Executed DbCommand (78ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Name', N'UnitPrice') AND [object_id] = OBJECT_ID(N'[Products]'))
+    SET IDENTITY_INSERT [Products] ON;
+INSERT INTO [Products] ([Id], [Name], [UnitPrice])
+VALUES (1, N'Laptop', 999.99),
+(2, N'Smartphone', 499.99),
+(3, N'Tablet', 299.99);
+IF EXISTS (SELECT * FROM [sys].[identity_columns] WHERE [name] IN (N'Id', N'Name', N'UnitPrice') AND [object_id] = OBJECT_ID(N'[Products]'))
+    SET IDENTITY_INSERT [Products] OFF;
+2025-10-28 16:51:16.241 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_CartItems_CartId] ON [CartItems] ([CartId]);
+2025-10-28 16:51:16.249 +01:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20251020223304_Initial', N'9.0.10');
+2025-10-28 16:51:16.249 +01:00 [INF] Applying migration '20251024232246_AddGuestUsersAndOrdersSqlServer'.
+2025-10-28 16:51:16.272 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [GuestUsers] (
+    [Id] uniqueidentifier NOT NULL,
+    [Email] nvarchar(100) NOT NULL,
+    CONSTRAINT [PK_GuestUsers] PRIMARY KEY ([Id])
+);
+2025-10-28 16:51:16.276 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Orders] (
+    [Id] uniqueidentifier NOT NULL,
+    [CreatedOn] datetimeoffset NOT NULL,
+    [GuestUserId] uniqueidentifier NOT NULL,
+    [DatePaid] datetimeoffset NULL,
+    [PaymentReference] nvarchar(100) NULL,
+    CONSTRAINT [PK_Orders] PRIMARY KEY ([Id])
+);
+2025-10-28 16:51:16.280 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [OrderItems] (
+    [Id] uniqueidentifier NOT NULL,
+    [OrderId] uniqueidentifier NOT NULL,
+    [ProductId] int NOT NULL,
+    [Quantity] int NOT NULL,
+    [UnitPrice] decimal(18,2) NOT NULL,
+    CONSTRAINT [PK_OrderItems] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_OrderItems_Orders_OrderId] FOREIGN KEY ([OrderId]) REFERENCES [Orders] ([Id]) ON DELETE CASCADE
+);
+2025-10-28 16:51:16.284 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+UPDATE [Products] SET [Name] = N'Coffee Mug', [UnitPrice] = 9.99
+WHERE [Id] = 1;
+SELECT @@ROWCOUNT;
+2025-10-28 16:51:16.288 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+UPDATE [Products] SET [Name] = N'T-Shirt', [UnitPrice] = 19.99
+WHERE [Id] = 2;
+SELECT @@ROWCOUNT;
+2025-10-28 16:51:16.292 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+UPDATE [Products] SET [Name] = N'Sticker Pack', [UnitPrice] = 3.99
+WHERE [Id] = 3;
+SELECT @@ROWCOUNT;
+2025-10-28 16:51:16.295 +01:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_OrderItems_OrderId] ON [OrderItems] ([OrderId]);
+2025-10-28 16:51:16.298 +01:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20251024232246_AddGuestUsersAndOrdersSqlServer', N'9.0.10');
+2025-10-28 16:51:16.313 +01:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2025-10-28 16:51:16.314 +01:00 [INF] Database migrations applied successfully.
+2025-10-28 16:51:16.522 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Products] AS [p]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-10-28 16:51:16.526 +01:00 [INF] DB has data - seeding not required.
+2025-10-28 16:51:16.835 +01:00 [INF] Now listening on: https://localhost:54777
+2025-10-28 16:51:16.843 +01:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-28 16:51:17.521 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-28 16:51:17.521 +01:00 [INF] Hosting environment: Development
+2025-10-28 16:51:17.521 +01:00 [INF] Content root path: C:\dev\github-ardalis\VerticalCleanModularMicroservices\05-CleanVertical\src\OrderDemo.CleanArch.Web
+2025-10-28 16:56:22.943 +01:00 [INF] Request starting HTTP/1.1 GET https://localhost:57679/products - null null
+2025-10-28 16:56:22.963 +01:00 [INF] Executing endpoint 'HTTP: GET /Products'
+2025-10-28 16:56:23.062 +01:00 [INF] Executed DbCommand (19ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Name], [p].[UnitPrice]
+FROM [Products] AS [p]
+ORDER BY [p].[Id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-10-28 16:56:23.098 +01:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Products] AS [p]
+2025-10-28 16:56:23.125 +01:00 [INF] Executed endpoint 'HTTP: GET /Products'
+2025-10-28 16:56:23.128 +01:00 [INF] Request finished HTTP/1.1 GET https://localhost:57679/products - 200 null application/json; charset=utf-8 191.9526ms
