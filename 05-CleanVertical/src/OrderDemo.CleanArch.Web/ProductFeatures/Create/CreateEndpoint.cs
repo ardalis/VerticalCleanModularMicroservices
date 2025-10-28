@@ -13,7 +13,7 @@ public sealed class CreateProductRequest
 
 // TODO: Add DbContext injection
 // AppDbContext dbContext
-public class CreateEndpoint(AppDbContext dbContext) : 
+public class CreateEndpoint() : 
   Endpoint<CreateProductRequest, ProductRecord>
 {
   public override void Configure()
