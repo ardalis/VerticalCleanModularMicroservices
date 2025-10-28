@@ -5,6 +5,16 @@ using Nimble.Modulith.Email.Contracts;
 
 namespace Nimble.Modulith.SharedInfrastructure.Messaging;
 
+public class NoOpCommandHandler : ICommandHandler<SendEmailCommand, Unit>
+{
+    public ValueTask<Unit> Handle(SendEmailCommand command, CancellationToken ct)
+    {
+        // This handler should never be called because the EmailCommandPublisherBehavior
+        // intercepts SendEmailCommand and publishes it to RabbitMQ instead.
+        throw new InvalidOperationException("NoOpCommandHandler should not be invoked.");
+    }
+}
+
 /// <summary>
 /// Intercepts SendEmailCommand and publishes it to RabbitMQ instead of handling it in-process.
 /// This allows the Email module to be a separate microservice.

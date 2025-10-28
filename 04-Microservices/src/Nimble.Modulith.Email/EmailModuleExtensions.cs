@@ -1,4 +1,6 @@
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Nimble.Modulith.Email.Integrations;
 using Nimble.Modulith.Email.Interfaces;

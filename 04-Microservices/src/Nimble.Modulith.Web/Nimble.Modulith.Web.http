@@ -1,4 +1,4 @@
-@Nimble.Modulith.Web_HostAddress = http://localhost:5002
+@Nimble.Modulith.Web_HostAddress = https://localhost:7725
 
 ### Register a new user
 
@@ -28,7 +28,7 @@ POST {{Nimble.Modulith.Web_HostAddress}}/logout
 GET {{Nimble.Modulith.Web_HostAddress}}/profile
 
 ### Add User to Role
-@UserId=addbbe7b-0231-4561-9a40-ab388b94f716
+@UserId=cb326aa1-9f78-4975-a527-24cb3f2e445c
 POST {{Nimble.Modulith.Web_HostAddress}}/users/{{UserId}}/roles
 Content-Type: application/json
 {

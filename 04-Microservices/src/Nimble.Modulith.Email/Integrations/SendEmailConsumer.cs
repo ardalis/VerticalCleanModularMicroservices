@@ -10,7 +10,8 @@ public class SendEmailConsumer : IConsumer<SendEmailCommand>
     private readonly IMediator _mediator;
     private readonly ILogger<SendEmailConsumer> _logger;
 
-    public SendEmailConsumer(IMediator mediator, ILogger<SendEmailConsumer> logger)
+    public SendEmailConsumer(IMediator mediator, 
+        ILogger<SendEmailConsumer> logger)
     {
         _mediator = mediator;
         _logger = logger;

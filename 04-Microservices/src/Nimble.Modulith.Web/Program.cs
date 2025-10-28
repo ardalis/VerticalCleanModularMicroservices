@@ -57,8 +57,6 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
-
 // Add authentication and authorization middleware
 app.UseAuthentication();
 app.UseAuthorization();

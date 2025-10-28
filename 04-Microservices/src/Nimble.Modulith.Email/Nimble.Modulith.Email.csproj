@@ -1,18 +1,21 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<MediatorServiceLifetime>Scoped</MediatorServiceLifetime>
+	</PropertyGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Nimble.Modulith.Email.Contracts\Nimble.Modulith.Email.Contracts.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Nimble.Modulith.Email.Contracts\Nimble.Modulith.Email.Contracts.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="MailKit" />
+		<PackageReference Include="MassTransit" />
+		<PackageReference Include="MassTransit.RabbitMQ" />
+		<PackageReference Include="Mediator.Abstractions" />
+		<PackageReference Include="Serilog.AspNetCore" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="MailKit" />
-    <PackageReference Include="MassTransit" />
-    <PackageReference Include="Mediator.Abstractions" />
-    <PackageReference Include="Serilog.AspNetCore" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
 
 </Project>

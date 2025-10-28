@@ -16,13 +16,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add service defaults (Aspire configuration)
 builder.AddServiceDefaults();
 
+builder.Services.AddMediator(); 
 // Add Mediator with source generation
 // use assembly:
 // [assembly: Mediator.MediatorOptions(ServiceLifetime = ServiceLifetime.Scoped)]
 //builder.Services.AddMediator(options =>
 //{
 //    options.ServiceLifetime = ServiceLifetime.Scoped;
-//});
+//}, typeof(EmailModuleExtensions).Assembly);
 
 // Add logging behavior to Mediator pipeline
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
@@ -32,13 +33,15 @@ builder.Services.AddMassTransit(x =>
 {
     // Add consumers from the Email module assembly
     x.AddConsumers(typeof(EmailModuleExtensions).Assembly);
-    
+
     x.UsingRabbitMq((context, cfg) =>
     {
         cfg.Host(builder.Configuration.GetConnectionString("rabbitmq"));
         cfg.ConfigureEndpoints(context);
     });
 });
+//builder.Services.AddAuthentication();
+//builder.Services.AddAuthorization();
 
 // Add FastEndpoints with JWT Bearer Authentication and Authorization
 //builder.Services.AddFastEndpoints()
@@ -63,8 +66,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 // Add authentication and authorization middleware
-app.UseAuthentication();
-app.UseAuthorization();
+//app.UseAuthentication();
+//app.UseAuthorization();
 
 //app.UseFastEndpoints()
 //    .UseSwaggerGen();
