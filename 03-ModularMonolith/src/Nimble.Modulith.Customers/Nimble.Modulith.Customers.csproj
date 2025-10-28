@@ -20,6 +20,10 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+    <PackageReference Include="NsDepCop">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Serilog.AspNetCore" />
   </ItemGroup>
 
@@ -27,6 +31,11 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	  <WarningsAsErrors>NSDEPCOP01</WarningsAsErrors>
   </PropertyGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Remove="C:\dev\github-ardalis\VerticalCleanModularMicroservices\03-ModularMonolith\src\Nimble.Modulith.Customers\config.nsdepcop" />
+  </ItemGroup>
 
 </Project>

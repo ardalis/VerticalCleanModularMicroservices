@@ -1,6 +1,13 @@
 using Nimble.Modulith.Customers.Domain.Common;
+using Nimble.Modulith.Customers.Infrastructure.Data;
 
 namespace Nimble.Modulith.Customers.Domain.OrderAggregate;
+
+// nsdepcop
+//public class Foo(CustomersDbContext customers)
+//{
+
+//}
 
 public class OrderItem : EntityBase
 {
@@ -11,3 +18,4 @@ public class OrderItem : EntityBase
     public decimal UnitPrice { get; set; }
     public decimal TotalPrice => Quantity * UnitPrice;
 }
+
