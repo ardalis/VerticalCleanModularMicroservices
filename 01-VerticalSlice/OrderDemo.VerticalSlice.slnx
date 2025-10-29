@@ -6,12 +6,9 @@
   </Configurations>
   <Folder Name="/aspire/">
     <Project Path="aspire/OrderDemo.AppHost/OrderDemo.AppHost.csproj" />
-  </Folder>
-  <Folder Name="/Solution Items/">
-    <File Path="../demoplan.md" />
+    <Project Path="src/ServiceDefaults/ServiceDefaults.csproj" />
   </Folder>
   <Folder Name="/src/">
     <Project Path="src/OrderDemo.Api/OrderDemo.Api.csproj" />
-    <Project Path="src/ServiceDefaults/ServiceDefaults.csproj" />
   </Folder>
 </Solution>

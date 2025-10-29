@@ -14,7 +14,7 @@
     <PackageReference Include="Ardalis.Specification" />
     <PackageReference Include="Mediator.Abstractions" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
-    <PackageReference Include="Vogen" >
+    <PackageReference Include="Vogen">
       <IncludeAssets>compile; runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>

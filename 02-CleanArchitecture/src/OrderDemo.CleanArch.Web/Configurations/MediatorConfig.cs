@@ -1,5 +1,4 @@
-﻿using Ardalis.SharedKernel;
-using OrderDemo.CleanArch.Core.ProductAggregate;
+﻿using OrderDemo.CleanArch.Core.ProductAggregate;
 using OrderDemo.CleanArch.Infrastructure;
 using OrderDemo.CleanArch.UseCases.Products.Get;
 

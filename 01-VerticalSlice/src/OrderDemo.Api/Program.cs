@@ -1,13 +1,20 @@
 using Microsoft.EntityFrameworkCore;
-using Mediator;
 using OrderDemo.Api.CartFeature;
 using OrderDemo.Api.Data;
+using OrderDemo.Api.OrderFeature;
 using OrderDemo.Api.ProductFeature;
 using Scalar.AspNetCore;
+using Serilog;
 using ServiceDefaults;
-using OrderDemo.Api.OrderFeature;
+
+Log.Logger = new LoggerConfiguration()
+  .Enrich.FromLogContext()
+  .WriteTo.Console()
+  .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSerilog();
 
 // Add Aspire service defaults
 builder.AddServiceDefaults();
@@ -19,6 +26,11 @@ builder.AddSqlServerDbContext<AppDbContext>("AppDb");
 builder.Services.AddMediator(options =>
 {
     options.ServiceLifetime = ServiceLifetime.Scoped;
+
+    options.PipelineBehaviors = new[]
+    {
+        typeof(LoggingBehavior<,>)
+    };
 });
 
 builder.Services.AddOpenApi();
