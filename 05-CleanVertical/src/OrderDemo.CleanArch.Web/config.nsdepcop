@@ -10,6 +10,9 @@
     
     <Disallowed From="OrderDemo.CleanVertical.Web.ProductFeatures.*"
 				To="OrderDemo.CleanVertical.Web.Infrastructure.*" />
+    
+    <Disallowed From="OrderDemo.CleanVertical.Web.Domain.OrderAggregate.*"
+				To="OrderDemo.CleanVertical.Web.Domain.CartAggregate.*" />
 
     <AnalyzerConfig>
         <IssueKind Name="IllegalDependency" Severity="Error" />

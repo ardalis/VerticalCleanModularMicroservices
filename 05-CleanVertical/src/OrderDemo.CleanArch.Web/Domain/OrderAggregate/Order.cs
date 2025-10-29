@@ -1,4 +1,5 @@
 ﻿using OrderDemo.CleanVertical.Web.Domain.ProductAggregate;
+using OrderDemo.CleanVertical.Web.Infrastructure.Data;
 
 namespace OrderDemo.CleanVertical.Web.Domain.OrderAggregate;
 
@@ -10,6 +11,7 @@ public class Order : EntityBase<Order, OrderId>, IAggregateRoot
   {
     Id = id;
     GuestUserId = guestUserId;
+
   }
 
   public DateTimeOffset CreatedOn { get; private set; } = DateTimeOffset.UtcNow;

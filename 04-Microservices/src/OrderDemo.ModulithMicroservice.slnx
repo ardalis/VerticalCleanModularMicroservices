@@ -7,6 +7,11 @@
     <Project Path="Nimble.Modulith.Customers.Contracts/Nimble.Modulith.Customers.Contracts.csproj" />
     <Project Path="Nimble.Modulith.Customers/Nimble.Modulith.Customers.csproj" />
   </Folder>
+  <Folder Name="/Email Microservice/">
+    <Project Path="Nimble.Modulith.Email.Contracts/Nimble.Modulith.Email.Contracts.csproj" />
+    <Project Path="Nimble.Modulith.Email.Web/Nimble.Modulith.Email.Web.csproj" />
+    <Project Path="Nimble.Modulith.Email/Nimble.Modulith.Email.csproj" />
+  </Folder>
   <Folder Name="/Products Module/">
     <Project Path="Nimble.Modulith.Products.Contracts/Nimble.Modulith.Products.Contracts.csproj" />
     <Project Path="Nimble.Modulith.Products/Nimble.Modulith.Products.csproj" />
@@ -14,11 +19,6 @@
   <Folder Name="/Users Module/">
     <Project Path="Nimble.Modulith.Users.Contracts/Nimble.Modulith.Users.Contracts.csproj" />
     <Project Path="Nimble.Modulith.Users/Nimble.Modulith.Users.csproj" />
-  </Folder>
-  <Folder Name="/Email Module/">
-    <Project Path="Nimble.Modulith.Email.Contracts/Nimble.Modulith.Email.Contracts.csproj" />
-    <Project Path="Nimble.Modulith.Email/Nimble.Modulith.Email.csproj" />
-    <Project Path="Nimble.Modulith.Email.Web/Nimble.Modulith.Email.Web.csproj" />
   </Folder>
   <Folder Name="/Reporting Module/">
     <Project Path="Nimble.Modulith.Reporting.Contracts/Nimble.Modulith.Reporting.Contracts.csproj" />
