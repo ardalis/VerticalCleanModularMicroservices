@@ -1,19 +1,18 @@
+﻿
+using OrderDemo.CleanArch.Core.ProductAggregate;
+
 namespace OrderDemo.CleanArch.Core.OrderAggregate;
 
-public class OrderItem
+public class OrderItem(OrderId orderId, ProductId productId, Quantity quantity, Price unitPrice)
+  : EntityBase<OrderItem, OrderItemId>
 {
-  public OrderItem(int id, Guid orderId, int productId, int quantity, decimal unitPrice)
-  {
-    Id = id;
-    OrderId = orderId;
-    ProductId = productId;
-    Quantity = quantity;
-    UnitPrice = unitPrice;
-  }
+  public OrderId OrderId { get; private set; } = orderId;
+  public ProductId ProductId { get; private set; } = productId;
+  public Quantity Quantity { get; private set; } = quantity;
+  public Price UnitPrice { get; private set; } = unitPrice;
 
-  public int Id { get; private set; }
-  public Guid OrderId { get; private set; }
-  public int ProductId { get; private set; }
-  public int Quantity { get; private set; }
-  public decimal UnitPrice { get; private set; }
+  internal void IncreaseQuantity(Quantity quantity)
+  {
+    Quantity += quantity;
+  }
 }

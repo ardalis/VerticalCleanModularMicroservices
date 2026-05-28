@@ -4,6 +4,10 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
+  <Folder Name="/aspire/">
+    <Project Path="src/OrderDemo.CleanArch.AspireHost/OrderDemo.CleanArch.AspireHost.csproj" />
+    <Project Path="src/OrderDemo.CleanArch.ServiceDefaults/OrderDemo.CleanArch.ServiceDefaults.csproj" />
+  </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path="CleanArchitecture.nuspec" />
@@ -11,8 +15,6 @@
     <File Path="Directory.Packages.props" />
   </Folder>
   <Folder Name="/src/">
-    <Project Path="src/OrderDemo.CleanArch.AspireHost/OrderDemo.CleanArch.AspireHost.csproj" />
-    <Project Path="src/OrderDemo.CleanArch.ServiceDefaults/OrderDemo.CleanArch.ServiceDefaults.csproj" />
     <Project Path="src/OrderDemo.CleanArch.Core/OrderDemo.CleanArch.Core.csproj" />
     <Project Path="src/OrderDemo.CleanArch.Infrastructure/OrderDemo.CleanArch.Infrastructure.csproj" />
     <Project Path="src/OrderDemo.CleanArch.UseCases/OrderDemo.CleanArch.UseCases.csproj" />

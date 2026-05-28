@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<NsDepCopConfig>
+	<Allowed From="*" To="*" />
+
+	<Disallowed From="Nimble.Modulith.Customers.Domain.*"
+				To="Nimble.Modulith.Customers.Infrastructure.*" />
+
+	<AnalyzerConfig>
+		<IssueKind Name="IllegalDependency" Severity="Error" />
+	</AnalyzerConfig>
+</NsDepCopConfig>

@@ -1,4 +1,4 @@
-﻿using OrderDemo.CleanArch.Core.ContributorAggregate;
+﻿using OrderDemo.CleanArch.Core.ProductAggregate;
 
 namespace OrderDemo.CleanArch.IntegrationTests.Data;
 
@@ -7,35 +7,36 @@ public class EfRepositoryUpdate : BaseEfRepoTestFixture
   [Fact]
   public async Task UpdatesItemAfterAddingIt()
   {
-    // add a Contributor
+    // add a Product
     var repository = GetRepository();
-    var initialName = ContributorName.From(Guid.NewGuid().ToString());
-    var Contributor = new Contributor(initialName);
+    var productId = ProductId.From(1);
+    var initialUnitPrice = 0.55m;
+    var initialName = Guid.NewGuid().ToString();
+    var Product = new Product(productId, initialName, initialUnitPrice);
 
-    await repository.AddAsync(Contributor);
+    await repository.AddAsync(Product);
 
     // detach the item so we get a different instance
-    _dbContext.Entry(Contributor).State = EntityState.Detached;
+    _dbContext.Entry(Product).State = EntityState.Detached;
 
     // fetch the item and update its title
-    var newContributor = (await repository.ListAsync())
-        .FirstOrDefault(Contributor => Contributor.Name == initialName);
-    newContributor.ShouldNotBeNull();
+    var newProduct = (await repository.ListAsync())
+        .FirstOrDefault(Product => Product.Name == initialName);
+    newProduct.ShouldNotBeNull();
 
-    Contributor.ShouldNotBeSameAs(newContributor);
-    var newName = ContributorName.From(Guid.NewGuid().ToString());
-    newContributor.UpdateName(newName);
+    Product.ShouldNotBeSameAs(newProduct);
+    var newName = Guid.NewGuid().ToString();
+    newProduct.UpdateName(newName);
 
     // Update the item
-    await repository.UpdateAsync(newContributor);
+    await repository.UpdateAsync(newProduct);
 
     // Fetch the updated item
     var updatedItem = (await repository.ListAsync())
-        .FirstOrDefault(Contributor => Contributor.Name == newName);
+        .FirstOrDefault(Product => Product.Name == newName);
 
     updatedItem.ShouldNotBeNull();
-    Contributor.Name.ShouldNotBe(updatedItem.Name);
-    Contributor.Status.ShouldBe(updatedItem.Status);
-    newContributor.Id.ShouldBe(updatedItem.Id);
+    Product.Name.ShouldNotBe(updatedItem.Name);
+    newProduct.Id.ShouldBe(updatedItem.Id);
   }
 }

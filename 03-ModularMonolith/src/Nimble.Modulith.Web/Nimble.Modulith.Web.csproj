@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FastEndpoints" />
+    <PackageReference Include="FastEndpoints.Security" />
+    <PackageReference Include="FastEndpoints.Swagger" />
+    <PackageReference Include="Mediator.SourceGenerator">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Serilog.AspNetCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Nimble.Modulith.Users\Nimble.Modulith.Users.csproj" />
+    <ProjectReference Include="..\Nimble.Modulith.ServiceDefaults\Nimble.Modulith.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\Nimble.Modulith.Products\Nimble.Modulith.Products.csproj" />
+    <ProjectReference Include="..\Nimble.Modulith.Customers\Nimble.Modulith.Customers.csproj" />
+    <ProjectReference Include="..\Nimble.Modulith.Email\Nimble.Modulith.Email.csproj" />
+    <ProjectReference Include="..\Nimble.Modulith.Reporting\Nimble.Modulith.Reporting.csproj" />
+  </ItemGroup>
+
+</Project>

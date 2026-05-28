@@ -1,8 +1,5 @@
-﻿using OrderDemo.CleanArch.Core.Interfaces;
-using OrderDemo.CleanArch.Core.Services;
-using OrderDemo.CleanArch.Infrastructure.Data;
+﻿using OrderDemo.CleanArch.Infrastructure.Data;
 using OrderDemo.CleanArch.Infrastructure.Data.Queries;
-using OrderDemo.CleanArch.UseCases.Contributors.List;
 using OrderDemo.CleanArch.UseCases.Products.List;
 
 namespace OrderDemo.CleanArch.Infrastructure;
@@ -13,8 +10,9 @@ public static class InfrastructureServiceExtensions
     ConfigurationManager config,
     ILogger logger)
   {
-    string? connectionString = config.GetConnectionString("SqliteConnection");
-    Guard.Against.Null(connectionString);
+    // Always use SQL Server from Aspire
+    string? connectionString = config.GetConnectionString("AppDb");
+    Guard.Against.Null(connectionString, "AppDb connection string is required. Make sure the application is running with Aspire.");
 
     services.AddScoped<EventDispatchInterceptor>();
     services.AddScoped<IDomainEventDispatcher, MediatorDomainEventDispatcher>();
@@ -22,15 +20,14 @@ public static class InfrastructureServiceExtensions
     services.AddDbContext<AppDbContext>((provider, options) =>
     {
       var eventDispatchInterceptor = provider.GetRequiredService<EventDispatchInterceptor>();
-      options.UseSqlite(connectionString);
+      
+      options.UseSqlServer(connectionString);
       options.AddInterceptors(eventDispatchInterceptor);
     });
 
     services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>))
            .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>))
-           .AddScoped<IListContributorsQueryService, ListContributorsQueryService>()
-           .AddScoped<IListProductsQueryService, ListProductsQueryService>()
-           .AddScoped<IDeleteContributorService, DeleteContributorService>();
+           .AddScoped<IListProductsQueryService, ListProductsQueryService>();
 
     logger.LogInformation("{Project} services registered", "Infrastructure");
 

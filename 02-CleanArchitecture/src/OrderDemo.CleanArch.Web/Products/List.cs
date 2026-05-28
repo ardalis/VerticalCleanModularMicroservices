@@ -1,5 +1,4 @@
-using OrderDemo.CleanArch.Core.ProductAggregate;
-using OrderDemo.CleanArch.UseCases.Products;
+﻿using OrderDemo.CleanArch.UseCases.Products;
 using OrderDemo.CleanArch.UseCases.Products.List;
 using FluentValidation;
 

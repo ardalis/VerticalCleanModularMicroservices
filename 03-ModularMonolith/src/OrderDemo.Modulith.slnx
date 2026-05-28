@@ -1,0 +1,31 @@
+<Solution>
+  <Folder Name="/__SolutionItems/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Folder Name="/Customers Module/">
+    <Project Path="Nimble.Modulith.Customers.Contracts/Nimble.Modulith.Customers.Contracts.csproj" />
+    <Project Path="Nimble.Modulith.Customers/Nimble.Modulith.Customers.csproj" />
+  </Folder>
+  <Folder Name="/Products Module/">
+    <Project Path="Nimble.Modulith.Products.Contracts/Nimble.Modulith.Products.Contracts.csproj" />
+    <Project Path="Nimble.Modulith.Products/Nimble.Modulith.Products.csproj" />
+  </Folder>
+  <Folder Name="/Users Module/">
+    <Project Path="Nimble.Modulith.Users.Contracts/Nimble.Modulith.Users.Contracts.csproj" />
+    <Project Path="Nimble.Modulith.Users/Nimble.Modulith.Users.csproj" />
+  </Folder>
+  <Folder Name="/Email Module/">
+    <Project Path="Nimble.Modulith.Email.Contracts/Nimble.Modulith.Email.Contracts.csproj" />
+    <Project Path="Nimble.Modulith.Email/Nimble.Modulith.Email.csproj" />
+  </Folder>
+  <Folder Name="/Reporting Module/">
+    <Project Path="Nimble.Modulith.Reporting.Contracts/Nimble.Modulith.Reporting.Contracts.csproj" />
+    <Project Path="Nimble.Modulith.Reporting/Nimble.Modulith.Reporting.csproj" />
+  </Folder>
+  <Folder Name="/_Host/">
+    <Project Path="Nimble.Modulith.AppHost/Nimble.Modulith.AppHost.csproj" />
+    <Project Path="Nimble.Modulith.ServiceDefaults/Nimble.Modulith.ServiceDefaults.csproj" />
+    <Project Path="Nimble.Modulith.Web/Nimble.Modulith.Web.csproj" />
+  </Folder>
+</Solution>

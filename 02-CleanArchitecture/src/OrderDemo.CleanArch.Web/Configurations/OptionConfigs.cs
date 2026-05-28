@@ -11,6 +11,7 @@ public static class OptionConfigs
                                                     WebApplicationBuilder builder)
   {
     services.Configure<MailserverConfiguration>(configuration.GetSection("Mailserver"))
+    .Configure<DatabaseOptions>(configuration.GetSection("DatabaseOptions"))
     // Configure Web Behavior
     .Configure<CookiePolicyOptions>(options =>
     {

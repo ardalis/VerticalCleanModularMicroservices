@@ -1,4 +1,4 @@
-using Vogen;
+﻿using Vogen;
 
 namespace OrderDemo.CleanArch.Core.CartAggregate;
 
@@ -6,5 +6,7 @@ namespace OrderDemo.CleanArch.Core.CartAggregate;
 public readonly partial struct CartId
 {
   private static Validation Validate(Guid value)
-      => value != Guid.Empty ? Validation.Ok : Validation.Invalid("CartId cannot be empty.");
+      => value != Guid.Empty ? Validation.Ok : Validation.Invalid("CartId must set to non-default value.");
 }
+[ValueObject<int>]
+public readonly partial struct TestId { }

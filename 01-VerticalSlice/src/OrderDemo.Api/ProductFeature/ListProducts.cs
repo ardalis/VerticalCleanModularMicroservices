@@ -10,7 +10,8 @@ public static class ListProducts
         app.MapGet("/products", async (AppDbContext dbContext) =>
         {
             var products = await dbContext.Products
-                .Select(p => new ProductDto { Id = p.Id, Name = p.Name, UnitPrice = p.UnitPrice })
+                .Select(p => new ProductDto 
+                    { Id = p.Id, Name = p.Name, UnitPrice = p.UnitPrice })
                 .ToListAsync();
 
             return Results.Ok(products);

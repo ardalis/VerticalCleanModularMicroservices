@@ -1,3 +1,5 @@
+﻿using OrderDemo.CleanArch.Core.ProductAggregate;
+
 namespace OrderDemo.CleanArch.Core.OrderAggregate;
 
 public class Order : EntityBase<Order, OrderId>, IAggregateRoot
@@ -8,20 +10,26 @@ public class Order : EntityBase<Order, OrderId>, IAggregateRoot
   {
     Id = id;
     GuestUserId = guestUserId;
-    CreatedOn = DateTimeOffset.UtcNow;
   }
 
-  public DateTimeOffset CreatedOn { get; private set; }
+  public DateTimeOffset CreatedOn { get; private set; } = DateTimeOffset.UtcNow;
   public Guid GuestUserId { get; private set; }
   public DateTimeOffset? DatePaid { get; private set; }
   public string PaymentReference { get; private set; } = string.Empty;
   public IReadOnlyList<OrderItem> Items => _items.AsReadOnly();
 
-  public decimal Total => _items.Sum(i => i.UnitPrice * i.Quantity);
+  public decimal Total => _items.Sum(i => i.UnitPrice.Value * i.Quantity.Value);
 
-  public void AddItem(int productId, int quantity, decimal unitPrice)
+  public void AddItem(ProductId productId, Quantity quantity, Price unitPrice)
   {
-    var item = new OrderItem(0, Id.Value, productId, quantity, unitPrice);
+    var item = new OrderItem(Id, productId, quantity, unitPrice);
+
+    if(Items.Any(i => i.ProductId == productId))
+    {
+      var existingItem = Items.First(i => i.ProductId == productId);
+      existingItem.IncreaseQuantity(quantity);
+      return;
+    }
     _items.Add(item);
   }
 

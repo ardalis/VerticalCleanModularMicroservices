@@ -1,4 +1,6 @@
 ﻿using Ardalis.ListStartupServices;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using OrderDemo.CleanArch.Infrastructure.Data;
 using Scalar.AspNetCore;
 
@@ -41,17 +43,31 @@ public static class MiddlewareConfig
   {
     using var scope = app.Services.CreateScope();
     var services = scope.ServiceProvider;
+    var logger = services.GetRequiredService<ILogger<Program>>();
 
     try
     {
       var context = services.GetRequiredService<AppDbContext>();
-      //          await context.Database.MigrateAsync();
-      await context.Database.EnsureCreatedAsync();
-      await SeedData.InitializeAsync(context);
+      var dbOptions = services.GetService<IOptions<DatabaseOptions>>()?.Value;
+      
+      // Drop and recreate database in development if configured
+      if (app.Environment.IsDevelopment() && dbOptions?.RecreateOnStartup == true)
+      {
+        logger.LogWarning("DROPPING database for fresh start (DatabaseOptions:RecreateOnStartup = true)...");
+        await context.Database.EnsureDeletedAsync();
+        logger.LogInformation("Database dropped.");
+      }
+
+      // Apply all pending migrations
+      logger.LogInformation("Applying database migrations...");
+      await context.Database.MigrateAsync();
+      logger.LogInformation("Database migrations applied successfully.");
+
+      // Seed data
+      await SeedData.InitializeAsync(context, logger);
     }
     catch (Exception ex)
     {
-      var logger = services.GetRequiredService<ILogger<Program>>();
       logger.LogError(ex, "An error occurred seeding the DB. {exceptionMessage}", ex.Message);
     }
   }
